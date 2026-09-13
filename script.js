@@ -329,23 +329,36 @@ function saveAnswers(profileKey, answers) {
 
 function submitViaGoogleSheet(profileKey, answers, result) {
   return new Promise((resolve) => {
+
     if (!ONLINE_API_URL) {
-      resolve({ saved: false, reason: "not-configured" });
+      resolve({
+        saved: false,
+        reason: "not-configured"
+      });
       return;
     }
 
-    const frameName = `cctv-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const frameName =
+      `cctv-submit-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2)}`;
+
     const iframe = document.createElement("iframe");
+
     iframe.name = frameName;
     iframe.title = "Αποστολή απάντησης";
     iframe.style.display = "none";
+
     document.body.appendChild(iframe);
 
+
     const form = document.createElement("form");
+
     form.method = "POST";
     form.action = ONLINE_API_URL;
     form.target = frameName;
     form.style.display = "none";
+
 
     const fields = {
       profile: profileKey,
@@ -353,27 +366,86 @@ function submitViaGoogleSheet(profileKey, answers, result) {
       resultType: result.type
     };
 
+
     Object.entries(fields).forEach(([name, value]) => {
+
       const input = document.createElement("input");
+
       input.type = "hidden";
       input.name = name;
       input.value = value;
+
       form.appendChild(input);
     });
 
-    document.body.appendChild(form);
-    form.submit();
 
-    // Το Apps Script δεν χρειάζεται να επιστρέψει δεδομένα στον browser.
-    // Η υποβολή θεωρείται επιτυχής αφού στάλθηκε η φόρμα.
-    setTimeout(() => {
-      form.remove();
-      iframe.remove();
-      resolve({ saved: true });
-    }, 900);
+    document.body.appendChild(form);
+
+
+    let finished = false;
+
+
+    const finish = (saved, reason = "") => {
+
+      if (finished) return;
+
+      finished = true;
+
+      clearTimeout(timeout);
+
+      setTimeout(() => {
+        form.remove();
+        iframe.remove();
+      }, 500);
+
+      resolve({
+        saved,
+        reason
+      });
+    };
+
+
+    /*
+     * Το iframe φορτώνεται όταν το Google Apps Script
+     * ολοκληρώσει την απάντηση.
+     */
+    iframe.addEventListener("load", () => {
+
+      finish(true);
+
+    });
+
+
+    iframe.addEventListener("error", () => {
+
+      finish(false, "network-error");
+
+    });
+
+
+    /*
+     * Αν το Google Apps Script δεν απαντήσει,
+     * δεν αφήνουμε τη σελίδα να περιμένει για πάντα.
+     */
+    const timeout = setTimeout(() => {
+
+      finish(false, "timeout");
+
+    }, 10000);
+
+
+    try {
+
+      form.submit();
+
+    } catch (error) {
+
+      finish(false, "submit-error");
+
+    }
+
   });
 }
-
 function loadOnlineStatistics() {
   return new Promise((resolve, reject) => {
     if (!ONLINE_API_URL) {
