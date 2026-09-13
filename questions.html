@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ερωτήσεις | CCTV</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-hero">
+    <div class="container page-hero-content">
+      <h1>Απάντησε στις ερωτήσεις</h1>
+      <p>
+        Η διαδρομή προσαρμόζεται στο προφίλ που επέλεξες, ώστε οι ερωτήσεις
+        να είναι πιο κοντά στον τρόπο με τον οποίο προσεγγίζεις το θέμα των CCTV.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-light">
+      <div class="container">
+        <div class="intro-card intro-card-centered">
+          <div class="section-intro">
+            <h2 id="profile-title">Ερωτηματολόγιο</h2>
+            <p id="profile-description">
+              Επίλεξε πρώτα προφίλ από την προηγούμενη σελίδα.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <form id="questions-form">
+          <div id="questions-wrapper" class="question-list"></div>
+
+          <div class="callout-center questions-submit">
+            <button type="submit" class="button" id="submit-button">Ολοκλήρωση ερωτήσεων</button>
+          </div>
+          <p id="submit-status" class="submit-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="result-section" hidden>
+      <div class="container">
+        <div class="intro-card intro-card-centered">
+          <div class="section-intro">
+            <h2>Το αποτέλεσμα των απαντήσεών σου</h2>
+            <p id="result-title"></p>
+            <p id="result-text"></p>
+          </div>
+
+          <div class="callout-center result-actions">
+            <a class="button" href="results.html">Δες το συνολικό συμπέρασμα</a>
+            <a class="button button-light-outline" href="info.html">Συνέχεια στην ενημέρωση</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container callout-center">
+        <a class="button button-light-outline" href="profiles.html">Πίσω στα προφίλ</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

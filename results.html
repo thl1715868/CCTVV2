@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Συνολικά αποτελέσματα | CCTV</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-hero">
+    <div class="container page-hero-content">
+      <h1>Συνολικά αποτελέσματα</h1>
+      <p>Η σελίδα παρουσιάζει συγκεντρωτικά τις συμμετοχές όλων των ατόμων που ολοκλήρωσαν το ερωτηματολόγιο.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-light">
+      <div class="container">
+        <div class="intro-card intro-card-centered">
+          <div class="section-intro">
+            <h2>Ποια ομάδα είναι η μεγαλύτερη;</h2>
+            <p id="total-count">Φόρτωση αποτελεσμάτων…</p>
+            <div id="winner-box" class="aggregate-conclusion"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Κατανομή συμμετεχόντων</h2>
+          <p>Κάθε ολοκληρωμένο ερωτηματολόγιο μετρά ως μία συμμετοχή.</p>
+        </div>
+        <div id="profile-stats" class="stats-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container callout-center result-actions">
+        <a class="button" href="profiles.html">Νέα συμμετοχή</a>
+        <a class="button button-light-outline" href="index.html">Αρχική</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    const labels = {
+      beginner: "Δεν γνωρίζω σχεδόν τίποτα",
+      intermediate: "Γνωρίζω κάποια βασικά",
+      advanced: "Τα χρησιμοποιώ ή εργάζομαι με αυτά"
+    };
+
+    function loadStatistics() {
+      const totalEl = document.getElementById("total-count");
+      const winnerEl = document.getElementById("winner-box");
+      const statsEl = document.getElementById("profile-stats");
+
+      if (!window.CCTV_ONLINE_API_URL || window.CCTV_ONLINE_API_URL.includes("ΒΑΛΕ_ΕΔΩ")) {
+        totalEl.textContent = "Η online συλλογή δεν έχει ρυθμιστεί ακόμη.";
+        winnerEl.innerHTML = "<p>Ακολούθησε τις οδηγίες του README για να συνδέσεις τη σελίδα με το Google Sheet.</p>";
+        return;
+      }
+
+      const callbackName = `cctvResults_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      const script = document.createElement("script");
+      const timeout = setTimeout(() => {
+        cleanup();
+        totalEl.textContent = "Δεν ήταν δυνατή η φόρτωση των αποτελεσμάτων.";
+        winnerEl.innerHTML = "<p>Έλεγξε ότι το Google Apps Script έχει δημοσιευτεί ως Web App και ότι το URL στο config.js είναι σωστό.</p>";
+      }, 10000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+      }
+
+      window[callbackName] = (stats) => {
+        cleanup();
+        totalEl.textContent = `Συνολικές συμμετοχές: ${stats.total}`;
+
+        const entries = Object.entries(stats.profiles).sort((a, b) => b[1] - a[1]);
+        const max = entries.length ? entries[0][1] : 0;
+        const winners = entries.filter(([, count]) => count === max && max > 0);
+
+        if (!stats.total) {
+          winnerEl.innerHTML = "<h3>Δεν υπάρχει ακόμη διαθέσιμο δείγμα.</h3><p>Μόλις καταγραφούν συμμετοχές, θα εμφανιστεί αυτόματα το συμπέρασμα.</p>";
+        } else if (winners.length > 1) {
+          winnerEl.innerHTML = `<h3>Υπάρχει ισοπαλία.</h3><p>Οι μεγαλύτερες ομάδες είναι: ${winners.map(([key]) => `<strong>${labels[key]}</strong>`).join(", ")} με ${max} συμμετοχές.</p>`;
+        } else {
+          const [key, count] = winners[0];
+          const pct = Math.round((count / stats.total) * 100);
+          winnerEl.innerHTML = `<h3>Συμπέρασμα</h3><p>Η πολυπληθέστερη ομάδα είναι <strong>${labels[key]}</strong>, με <strong>${count}</strong> από τις ${stats.total} συμμετοχές (${pct}%).</p>`;
+        }
+
+        statsEl.innerHTML = entries.map(([key, count]) => {
+          const pct = stats.total ? Math.round((count / stats.total) * 100) : 0;
+          return `<article class="stat-card"><h3>${labels[key]}</h3><div class="stat-number">${count}</div><p>${pct}% των συμμετοχών</p><div class="stat-bar"><span style="width:${pct}%"></span></div></article>`;
+        }).join("");
+      };
+
+      script.onerror = () => {
+        cleanup();
+        totalEl.textContent = "Δεν ήταν δυνατή η σύνδεση με τη βάση απαντήσεων.";
+        winnerEl.innerHTML = "<p>Έλεγξε τη ρύθμιση του Google Apps Script και το URL στο config.js.</p>";
+      };
+
+      script.src = `${window.CCTV_ONLINE_API_URL}?action=statistics&callback=${encodeURIComponent(callbackName)}&t=${Date.now()}`;
+      document.head.appendChild(script);
+    }
+
+    loadStatistics();
+  </script>
+</body>
+</html>
