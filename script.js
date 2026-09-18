@@ -417,13 +417,15 @@ function saveAnswers(profileKey, answers) {
 function submitViaGoogleSheet(profileKey, answers, result) {
   return new Promise((resolve) => {
     if (!ONLINE_API_URL) {
-      resolve({ saved: false, reason: "not-configured", message: "Δεν έχει ρυθμιστεί το URL του Google Apps Script." });
+      resolve({ saved: false, reason: 'not-configured' });
       return;
     }
 
-    const callbackName = `cctvSubmit_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    const script = document.createElement("script");
+    const callbackName =
+      `cctvSubmit_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement('script');
     script.async = true;
+
     let finished = false;
     let timeout;
 
@@ -433,48 +435,44 @@ function submitViaGoogleSheet(profileKey, answers, result) {
       script.remove();
     };
 
-    const finish = (payload) => {
+    const finish = (resultObject) => {
       if (finished) return;
       finished = true;
       cleanup();
-      resolve(payload);
+      resolve(resultObject);
     };
 
     window[callbackName] = (data) => {
       if (data && data.success === true) {
-        finish({ saved: true, message: data.message });
+        finish({ saved: true });
       } else {
         finish({
           saved: false,
-          reason: "server-error",
-          message: data?.message || "Το Google Apps Script δεν αποθήκευσε την απάντηση."
+          reason: data?.message || 'server-error',
+          error: data?.error || ''
         });
       }
     };
 
-    script.onerror = () => finish({
-      saved: false,
-      reason: "network-error",
-      message: "Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script."
-    });
+    script.onerror = () => {
+      finish({ saved: false, reason: 'connection-error' });
+    };
 
-    timeout = setTimeout(() => finish({
-      saved: false,
-      reason: "timeout",
-      message: "Το Google Apps Script δεν απάντησε εγκαίρως."
-    }), 15000);
+    timeout = setTimeout(() => {
+      finish({ saved: false, reason: 'timeout' });
+    }, 15000);
 
-    const separator = ONLINE_API_URL.includes("?") ? "&" : "?";
-    const params = new URLSearchParams({
-      action: "submit",
-      callback: callbackName,
-      profile: profileKey,
-      answers: JSON.stringify(answers),
-      resultType: result.type,
-      t: String(Date.now())
-    });
+    const separator = ONLINE_API_URL.includes('?') ? '&' : '?';
+    const url =
+      `${ONLINE_API_URL}${separator}` +
+      `action=submit` +
+      `&profile=${encodeURIComponent(profileKey)}` +
+      `&answers=${encodeURIComponent(JSON.stringify(answers))}` +
+      `&resultType=${encodeURIComponent(result.type)}` +
+      `&callback=${encodeURIComponent(callbackName)}` +
+      `&t=${Date.now()}`;
 
-    script.src = `${ONLINE_API_URL}${separator}${params.toString()}`;
+    script.src = url;
     document.head.appendChild(script);
   });
 }
@@ -819,8 +817,14 @@ function renderQuestionsPage() {
         submitStatus.textContent = "Η απάντησή σου καταγράφηκε επιτυχώς.";
         submitStatus.className = "submit-status success";
       } else {
-        submitStatus.textContent =
-          serverResult.message || "Η απάντηση δεν αποθηκεύτηκε στο Google Sheet.";
+        const detail = serverResult.reason === 'not-configured'
+          ? 'Δεν έχει ρυθμιστεί το online API.'
+          : serverResult.reason === 'connection-error'
+            ? 'Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script.'
+            : serverResult.reason === 'timeout'
+              ? 'Το Google Apps Script δεν απάντησε εγκαίρως.'
+              : serverResult.reason || 'Άγνωστο σφάλμα.';
+        submitStatus.textContent = `Σφάλμα κατά την αποθήκευση: ${detail}`;
         submitStatus.className = "submit-status warning";
       }
     }
