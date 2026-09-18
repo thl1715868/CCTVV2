@@ -417,47 +417,65 @@ function saveAnswers(profileKey, answers) {
 function submitViaGoogleSheet(profileKey, answers, result) {
   return new Promise((resolve) => {
     if (!ONLINE_API_URL) {
-      resolve({ saved: false, reason: "not-configured" });
+      resolve({ saved: false, reason: "not-configured", message: "Δεν έχει ρυθμιστεί το URL του Google Apps Script." });
       return;
     }
 
-    const frameName = `cctv-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const iframe = document.createElement("iframe");
-    iframe.name = frameName;
-    iframe.title = "Αποστολή απάντησης";
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
+    const callbackName = `cctvSubmit_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement("script");
+    script.async = true;
+    let finished = false;
+    let timeout;
 
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = ONLINE_API_URL;
-    form.target = frameName;
-    form.style.display = "none";
-
-    const fields = {
-      profile: profileKey,
-      answers: JSON.stringify(answers),
-      resultType: result.type
+    const cleanup = () => {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
     };
 
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
+    const finish = (payload) => {
+      if (finished) return;
+      finished = true;
+      cleanup();
+      resolve(payload);
+    };
+
+    window[callbackName] = (data) => {
+      if (data && data.success === true) {
+        finish({ saved: true, message: data.message });
+      } else {
+        finish({
+          saved: false,
+          reason: "server-error",
+          message: data?.message || "Το Google Apps Script δεν αποθήκευσε την απάντηση."
+        });
+      }
+    };
+
+    script.onerror = () => finish({
+      saved: false,
+      reason: "network-error",
+      message: "Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script."
     });
 
-    document.body.appendChild(form);
-    form.submit();
+    timeout = setTimeout(() => finish({
+      saved: false,
+      reason: "timeout",
+      message: "Το Google Apps Script δεν απάντησε εγκαίρως."
+    }), 15000);
 
-    // Το Apps Script δεν χρειάζεται να επιστρέψει δεδομένα στον browser.
-    // Η υποβολή θεωρείται επιτυχής αφού στάλθηκε η φόρμα.
-    setTimeout(() => {
-      form.remove();
-      iframe.remove();
-      resolve({ saved: true });
-    }, 900);
+    const separator = ONLINE_API_URL.includes("?") ? "&" : "?";
+    const params = new URLSearchParams({
+      action: "submit",
+      callback: callbackName,
+      profile: profileKey,
+      answers: JSON.stringify(answers),
+      resultType: result.type,
+      t: String(Date.now())
+    });
+
+    script.src = `${ONLINE_API_URL}${separator}${params.toString()}`;
+    document.head.appendChild(script);
   });
 }
 
@@ -802,7 +820,7 @@ function renderQuestionsPage() {
         submitStatus.className = "submit-status success";
       } else {
         submitStatus.textContent =
-          "Το προσωπικό σου αποτέλεσμα εμφανίζεται κανονικά, αλλά η online συλλογή δεν έχει ρυθμιστεί ακόμη.";
+          serverResult.message || "Η απάντηση δεν αποθηκεύτηκε στο Google Sheet.";
         submitStatus.className = "submit-status warning";
       }
     }
