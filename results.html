@@ -19,7 +19,7 @@
       <div class="container">
         <div class="intro-card intro-card-centered">
           <div class="section-intro">
-            <h2>Ποια ομάδα είναι η μεγαλύτερη;</h2>
+            <h2>Καταγεγραμμένες συμμετοχές</h2>
             <p id="total-count">Φόρτωση αποτελεσμάτων…</p>
             <div id="winner-box" class="aggregate-conclusion"></div>
           </div>
@@ -53,24 +53,32 @@
       advanced: "Τα χρησιμοποιώ ή εργάζομαι με αυτά"
     };
 
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
     function loadStatistics() {
       const totalEl = document.getElementById("total-count");
       const winnerEl = document.getElementById("winner-box");
       const statsEl = document.getElementById("profile-stats");
+      const apiUrl = window.CCTV_ONLINE_API_URL || "";
 
-      if (!window.CCTV_ONLINE_API_URL || window.CCTV_ONLINE_API_URL.includes("ΒΑΛΕ_ΕΔΩ")) {
+      if (!apiUrl || apiUrl.includes("ΒΑΛΕ_ΕΔΩ")) {
         totalEl.textContent = "Η online συλλογή δεν έχει ρυθμιστεί ακόμη.";
-        winnerEl.innerHTML = "<p>Ακολούθησε τις οδηγίες του README για να συνδέσεις τη σελίδα με το Google Sheet.</p>";
+        winnerEl.innerHTML = "<p>Δεν έχει οριστεί το URL του Google Apps Script στο config.js.</p>";
         return;
       }
 
       const callbackName = `cctvResults_${Date.now()}_${Math.random().toString(36).slice(2)}`;
       const script = document.createElement("script");
-      const timeout = setTimeout(() => {
-        cleanup();
-        totalEl.textContent = "Δεν ήταν δυνατή η φόρτωση των αποτελεσμάτων.";
-        winnerEl.innerHTML = "<p>Έλεγξε ότι το Google Apps Script έχει δημοσιευτεί ως Web App και ότι το URL στο config.js είναι σωστό.</p>";
-      }, 10000);
+      script.async = true;
+      let finished = false;
+      let timeout;
 
       function cleanup() {
         clearTimeout(timeout);
@@ -78,37 +86,71 @@
         script.remove();
       }
 
-      window[callbackName] = (stats) => {
+      function showError(message) {
+        if (finished) return;
+        finished = true;
         cleanup();
-        totalEl.textContent = `Συνολικές συμμετοχές: ${stats.total}`;
+        totalEl.textContent = "Δεν ήταν δυνατή η φόρτωση των συνολικών αποτελεσμάτων.";
+        winnerEl.innerHTML = `<p>${escapeHtml(message)}</p>`;
+        statsEl.innerHTML = "";
+      }
 
-        const entries = Object.entries(stats.profiles).sort((a, b) => b[1] - a[1]);
-        const max = entries.length ? entries[0][1] : 0;
+      window[callbackName] = (stats) => {
+        if (finished) return;
+        if (!stats || typeof stats !== "object" || typeof stats.total !== "number" || !stats.profiles) {
+          showError("Το Google Apps Script επέστρεψε μη έγκυρα δεδομένα.");
+          return;
+        }
+
+        finished = true;
+        cleanup();
+
+        const entries = Object.entries(stats.profiles)
+          .filter(([key]) => Object.prototype.hasOwnProperty.call(labels, key))
+          .map(([key, count]) => [key, Number(count) || 0]);
+        const total = Number(stats.total) || 0;
+        totalEl.textContent = `Συνολικές συμμετοχές: ${total}`;
+
+        const max = entries.length ? Math.max(...entries.map(([, count]) => count)) : 0;
         const winners = entries.filter(([, count]) => count === max && max > 0);
 
-        if (!stats.total) {
-          winnerEl.innerHTML = "<h3>Δεν υπάρχει ακόμη διαθέσιμο δείγμα.</h3><p>Μόλις καταγραφούν συμμετοχές, θα εμφανιστεί αυτόματα το συμπέρασμα.</p>";
+        if (!total) {
+          winnerEl.innerHTML = `
+            <h3>Δεν υπάρχει ακόμη διαθέσιμο δείγμα.</h3>
+            <p>Μόλις καταγραφούν συμμετοχές, θα εμφανιστεί αυτόματα το συμπέρασμα.</p>
+          `;
         } else if (winners.length > 1) {
-          winnerEl.innerHTML = `<h3>Υπάρχει ισοπαλία.</h3><p>Οι μεγαλύτερες ομάδες είναι: ${winners.map(([key]) => `<strong>${labels[key]}</strong>`).join(", ")} με ${max} συμμετοχές.</p>`;
+          winnerEl.innerHTML = `
+            <h3>Υπάρχει ισοπαλία.</h3>
+            <p>Οι μεγαλύτερες ομάδες είναι ${winners.map(([key]) => `<strong>${escapeHtml(labels[key])}</strong>`).join(", ")} με ${max} συμμετοχές.</p>
+          `;
         } else {
           const [key, count] = winners[0];
-          const pct = Math.round((count / stats.total) * 100);
-          winnerEl.innerHTML = `<h3>Συμπέρασμα</h3><p>Η πολυπληθέστερη ομάδα είναι <strong>${labels[key]}</strong>, με <strong>${count}</strong> από τις ${stats.total} συμμετοχές (${pct}%).</p>`;
+          const pct = Math.round((count / total) * 100);
+          winnerEl.innerHTML = `
+            <h3>Συμπέρασμα</h3>
+            <p>Η πολυπληθέστερη ομάδα είναι <strong>${escapeHtml(labels[key])}</strong>, με <strong>${count}</strong> από τις ${total} συμμετοχές (${pct}%).</p>
+          `;
         }
 
         statsEl.innerHTML = entries.map(([key, count]) => {
-          const pct = stats.total ? Math.round((count / stats.total) * 100) : 0;
-          return `<article class="stat-card"><h3>${labels[key]}</h3><div class="stat-number">${count}</div><p>${pct}% των συμμετοχών</p><div class="stat-bar"><span style="width:${pct}%"></span></div></article>`;
+          const pct = total ? Math.round((count / total) * 100) : 0;
+          return `
+            <article class="stat-card">
+              <h3>${escapeHtml(labels[key])}</h3>
+              <div class="stat-number">${count}</div>
+              <p>${pct}% των συμμετοχών</p>
+              <div class="stat-bar"><span style="width:${pct}%"></span></div>
+            </article>
+          `;
         }).join("");
       };
 
-      script.onerror = () => {
-        cleanup();
-        totalEl.textContent = "Δεν ήταν δυνατή η σύνδεση με τη βάση απαντήσεων.";
-        winnerEl.innerHTML = "<p>Έλεγξε τη ρύθμιση του Google Apps Script και το URL στο config.js.</p>";
-      };
+      script.onerror = () => showError("Δεν ήταν δυνατή η σύνδεση με το Google Apps Script.");
+      timeout = setTimeout(() => showError("Η φόρτωση των αποτελεσμάτων άργησε περισσότερο από το αναμενόμενο. Δοκίμασε ξανά."), 15000);
 
-      script.src = `${window.CCTV_ONLINE_API_URL}?action=statistics&callback=${encodeURIComponent(callbackName)}&t=${Date.now()}`;
+      const separator = apiUrl.includes("?") ? "&" : "?";
+      script.src = `${apiUrl}${separator}action=statistics&callback=${encodeURIComponent(callbackName)}&t=${Date.now()}`;
       document.head.appendChild(script);
     }
 
@@ -116,3 +158,4 @@
   </script>
 </body>
 </html>
+
