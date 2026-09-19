@@ -561,8 +561,29 @@ function getMajorityIntro(profileKey) {
 }
 
 async function loadMajorityComparison(profileKey) {
-  const box = document.getElementById("aggregate-conclusion");
-  if (!box) return;
+  let box = document.getElementById("aggregate-conclusion");
+
+  // Αν δεν υπάρχει το πλαίσιο στη σελίδα, δημιουργείται αυτόματα
+  if (!box) {
+    const resultSection = document.getElementById("result-section");
+
+    if (!resultSection) {
+      console.error("Δεν βρέθηκε το result-section.");
+      return;
+    }
+
+    box = document.createElement("div");
+    box.id = "aggregate-conclusion";
+    box.className = "majority-results-container";
+
+    const resultContainer = resultSection.querySelector(".container");
+
+    if (resultContainer) {
+      resultContainer.appendChild(box);
+    } else {
+      resultSection.appendChild(box);
+    }
+  }
 
   try {
     const stats = await loadOnlineStatistics(profileKey);
