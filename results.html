@@ -13,7 +13,6 @@
       <p>Η σελίδα παρουσιάζει συγκεντρωτικά τις συμμετοχές όλων των ατόμων που ολοκλήρωσαν το ερωτηματολόγιο.</p>
     </div>
   </header>
-
   <main>
     <section class="section section-light">
       <div class="container">
@@ -26,7 +25,6 @@
         </div>
       </div>
     </section>
-
     <section class="section section-soft">
       <div class="container">
         <div class="section-intro">
@@ -36,10 +34,10 @@
         <div id="profile-stats" class="stats-grid"></div>
       </div>
     </section>
-
     <section class="section section-light">
       <div class="container callout-center result-actions">
         <a class="button" href="profiles.html">Νέα συμμετοχή</a>
+        <a class="button button-light-outline" href="info.html">Συνέχεια στην ενημέρωση</a>
         <a class="button button-light-outline" href="index.html">Αρχική</a>
       </div>
     </section>
@@ -104,7 +102,6 @@
 
         finished = true;
         cleanup();
-
         const entries = Object.entries(stats.profiles)
           .filter(([key]) => Object.prototype.hasOwnProperty.call(labels, key))
           .map(([key, count]) => [key, Number(count) || 0]);
@@ -147,14 +144,14 @@
       };
 
       script.onerror = () => showError("Δεν ήταν δυνατή η σύνδεση με το Google Apps Script.");
-      timeout = setTimeout(() => showError("Η φόρτωση των αποτελεσμάτων άργησε περισσότερο από το αναμενόμενο. Δοκίμασε ξανά."), 15000);
+      timeout = setTimeout(() => showError("Η φόρτωση των αποτελεσμάτων άργησε περισσότερο από το αναμενόμενο. Δοκίμασε ξανά."), 8000);
 
       const separator = apiUrl.includes("?") ? "&" : "?";
       script.src = `${apiUrl}${separator}action=statistics&callback=${encodeURIComponent(callbackName)}&t=${Date.now()}`;
       document.head.appendChild(script);
     }
 
-    loadStatistics();
+    document.addEventListener("DOMContentLoaded", loadStatistics);
   </script>
 </body>
 </html>
