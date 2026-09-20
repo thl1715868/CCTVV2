@@ -3,7 +3,8 @@ const STORAGE_KEYS = {
   result: "cctv_user_result"
 };
 
-// URL του Google Apps Script Web App. Συμπλήρωσέ το στο config.js.
+// URL του Google Apps Script Web App.
+// Το config.js πρέπει να ορίζει το CCTV_ONLINE_API_URL.
 const ONLINE_API_URL = window.CCTV_ONLINE_API_URL || "";
 
 const questionnaires = {
@@ -153,7 +154,10 @@ const questionnaires = {
 };
 
 
-// Κείμενα που εμφανίζονται όταν μια συγκεκριμένη απάντηση είναι η πλειοψηφική
+// ============================================================
+// ΚΕΙΜΕΝΑ ΠΛΕΙΟΨΗΦΙΑΣ
+// ============================================================
+
 const majorityTexts = {
   "beginner": [
     [
@@ -168,7 +172,7 @@ const majorityTexts = {
     ],
     [
       "Όχι μόνο είναι απαραίτητο, επιβάλλεται.\nΗ ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης\nη οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που\nχρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι\nμια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει\nστον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος.",
-      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης\nκάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
+      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
       "Μπορεί στα μάτια πολλών να μην\nσημαίνει πολλά βλέποντάς τόσες σημάνσεις φύλαξης καθημερινά. Όμως στην\nπραγματικότητα όχι μόνο είναι απαραίτητο, επιβάλλεται. Η ύπαρξη συστημάτων CCTV απαιτεί\nκαι την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης η οποία προστατεύει τα\nδικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που χρησιμοποιηθεί\nοποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι μια απλή προειδοποίηση\nπρος οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο,\nαυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος."
     ],
     [
@@ -182,6 +186,7 @@ const majorityTexts = {
       "Η απάντηση σε αυτό το ερώτημα\nείναι καθαρά υποκειμενική. Στην προκειμένη περίπτωση, από το κοινό που είχε\nελάχιστες γνώσεις πάνω στα συστήματα παρακολούθησης , οι περισσότεροι έκριναν\nότι η τοποθέτηση τους συχνά ξεπερνά την ρεαλιστική ανάγκη της ύπαρξής τους , με\nόποια συνέπεια ακολουθεί αυτό."
     ]
   ],
+
   "intermediate": [
     [
       "Είναι συνήθεια όλων μας όταν\nαντιλαμβανόμαστε την ύπαρξη καμερών σε έναν χώρο η επόμενη σκέψη μας να είναι να\nβρούμε τι αντικείμενα καλείται η κάμερα αυτή να φυλάξει. Αυτό μπορεί να\nσημαίνει από την ύπαρξη συγκεκριμένων αγαθών τα οποία πρέπει να προστατευθούν\nστον χώρο , μέχρι και την γενικότερη εξασφάλιση τάξης.",
@@ -194,13 +199,13 @@ const majorityTexts = {
       "Μόνο και μόνο η αίσθηση της συνεχούς\nπαρακολούθησης ενός χώρου είναι αρκετή για να αποτρέψει μεγάλο ποσοστό\nκακόβουλων ατόμων τα οποία συνήθως βασίζονται στην ολική απουσία συστημάτων\nασφαλείας ή στην μερική φύλαξη του χώρου η οποία συνήθως γίνεται με προσωπικό\nφύλαξης (φύλακες/security).\nΗ 24ωρη παρακολούθηση μέσω κάμερας δημιουργεί μια νέα πολύ δυσκολότερα\nαντιμετωπίσιμη απειλή , ακόμη και για τον πιο επίδοξο εγκληματία."
     ],
     [
-      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
-      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
-      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας."
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας."
     ],
     [
       "Όχι μόνο είναι απαραίτητο, επιβάλλεται.\nΗ ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης\nη οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που\nχρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι\nμια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει\nστον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος.",
-      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης\nκάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
+      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
       "Μπορεί στα μάτια πολλών να μην\nσημαίνει πολλά βλέποντάς τόσες σημάνσεις φύλαξης καθημερινά. Όμως στην\nπραγματικότητα όχι μόνο είναι απαραίτητο, επιβάλλεται. Η ύπαρξη συστημάτων CCTV απαιτεί\nκαι την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης η οποία προστατεύει τα\nδικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που χρησιμοποιηθεί\nοποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι μια απλή προειδοποίηση\nπρος οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο,\nαυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος."
     ],
     [
@@ -209,11 +214,12 @@ const majorityTexts = {
       "Η τεχνολογία εξελίσσεται ραγδαία\n, αυτό πλέον είναι γνωστό σε όλους. Αυτό δεν σημαίνει σε καμία περίπτωση ότι\nπρέπει εμείς να επαναπαυτούμε. Κάθε άλλο, πρέπει συνεχώς να ενημερωνόμαστε\nσχετικά με τις νέες τεχνολογίες που μπορεί να κρύβουν το επόμενο βήμα που θα μας\nφέρει πιο κοντά στην ασφάλειά μας ή στην έκθεσή μας σε κινδύνους."
     ]
   ],
+
   "advanced": [
     [
       "Σωστή σκέψη . Ο ορθός σχεδιασμός\nενός συστήματος είναι καθοριστικός παράγοντας της αξίας του. Τόσο στο κομμάτι\nεξασφάλισης προστασίας του χώρου , όσο και στο κομμάτι ορθού καταμερισμού το\nεξοπλισμού (αποφυγή περιττών υλικών/εξόδων χωρίς συμβιβασμό στην ασφάλεια), το\nκαλό σύστημα φαίνεται από το σχέδιο του και την προνοητικότητα του σχεδιαστή\nτου.",
       "Ο κανόνας του «ό,τι πληρώνεις\nπαίρνεις",
-      "Όσο εξελιγμένη και αν είναι μία κάμερα, αν δεν τοποθετηθεί\nσωστά είναι άλλη μια δολιοφθορά , πολλές φορές με υψηλό κόστος στην ασφάλεια\nμας αλλά και στο πορτοφόλι μας. Επομένως πρέπει πάντα να δίνεται ιδιαίτερη\nπροσοχή στον σχεδιασμό του κάθε χώρου που θέλουμε να φυλάξουμε καθώς το κάθε\nσημείο έχει διαφορετικές ανάγκες και τυφλά σημεία."
+      "Όσο εξελιγμένη και αν είναι μία κάμερα, αν δεν τοποθετηθεί\nσωστά είναι άλλη μια δολιοφθορά , πολλές φορές με υψηλό κόστος στην ασφάλεια μας αλλά και στο πορτοφόλι μας. Επομένως πρέπει πάντα να δίνεται ιδιαίτερη προσοχή στον σχεδιασμό του κάθε χώρου που θέλουμε να φυλάξουμε καθώς το κάθε σημείο έχει διαφορετικές ανάγκες και τυφλά σημεία."
     ],
     [
       "Για να γίνει σωστή κάλυψη ενός χώρου\n, πρέπει να υπάρχει σαφής σκοπός . Συγκεκριμένα αγαθά η πρόσωπα που έχουν ανάγκη\nνα προστατευθούν στον συγκεκριμένο χώρο. Αυτό θα καθορίσει μετέπειτα την\nεπιλογή κατάλληλων υλικών και την σωστή τοποθέτησή τους ανάλογα με τις ανάγκες\nτου χώρου που καλούμαστε να φυλάξουμε.",
@@ -232,11 +238,16 @@ const majorityTexts = {
     ],
     [
       "Ο σαφής σκοπός και η\nπεριορισμένη χρήση του συστήματος για την ικανοποίησή αυτού του σκοπού είναι ο\nκαλύτερος τρόπος εξασφάλισης προστασίας ενός χώρου ενώ παράλληλα διατηρείται η\nιδιωτικότητα του κάθε ατόμου που αλληλοεπιδρά στο χώρο αυτό.",
-      "Το προλαμβάνειν καλύτερο του\nθεραπεύειν.  Μερικές φορές η ύπαρξη μια\nκάμερας σε συγκεκριμένο σημείο κρίνεται απαραίτητη όταν είναι ήδη πολύ αργά.\nΕπομένως καλό είναι στον σχεδιασμό και την χρήση ενός CCTV να\nλαμβάνεται υπόψη και η προνοητικότητα , όχι μόνο τα γεγονότα που λαμβάνουν\nμέρος ως τώρα.",
+      "Το προλαμβάνειν καλύτερο του\nθεραπεύειν.  Μερικές φορές η ύπαρξη μια\nκάμερας σε συγκεκριμένο σημείο κρίνεται απαραίτητη όταν είναι ήδη πολύ αργά.\nΕπομένως καλό είναι στον σχεδιασμό και την χρήση ενός CCTV να\nλαμβάνεται υπόψη και η προνοητικότητα , όχι μόνο τα γεγονότα που λαμβάνουν\nμέρος ως τώρα.",
       "Όπως αναφέραμε και νωρίτερα , πολλά\nσυμβάντα καλούνται να έλθουν στο φως πολύ μετά τα γεγονότα που έλαβαν θέση. Επομένως\nείναι καθήκον μας , ειδικά σε περιπτώσεις που γνωρίζουμε ότι υπάρχει συμβάν ,\nνα διατηρούμε τα αρχεία καταγραφής ασφαλή έως ότου γίνει αίτημα χρήσης αυτών\nαπό τις αρχές προστασίας."
     ]
   ]
 };
+
+
+// ============================================================
+// SCORING
+// ============================================================
 
 const scoringMap = {
   beginner: [
@@ -266,6 +277,7 @@ const scoringMap = {
       { security: 0, privacy: 2, balanced: 1 }
     ]
   ],
+
   intermediate: [
     [
       { security: 2, privacy: 1, balanced: 2 },
@@ -293,6 +305,7 @@ const scoringMap = {
       { security: 1, privacy: 1, balanced: 2 }
     ]
   ],
+
   advanced: [
     [
       { security: 1, privacy: 1, balanced: 2 },
@@ -322,6 +335,11 @@ const scoringMap = {
   ]
 };
 
+
+// ============================================================
+// ΒΟΗΘΗΤΙΚΕΣ ΣΥΝΑΡΤΗΣΕΙΣ
+// ============================================================
+
 function getSelectedProfileKey() {
   const params = new URLSearchParams(window.location.search);
   return params.get("profile");
@@ -340,7 +358,9 @@ function createOptionMarkup(questionIndex, optionText, optionIndex) {
 
 function createQuestionMarkup(question, index) {
   const optionsMarkup = question.options
-    .map((option, optionIndex) => createOptionMarkup(index, option, optionIndex))
+    .map((option, optionIndex) =>
+      createOptionMarkup(index, option, optionIndex)
+    )
     .join("");
 
   return `
@@ -355,7 +375,7 @@ function createQuestionMarkup(question, index) {
 }
 
 function escapeHtml(text) {
-  return text
+  return String(text)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -363,8 +383,14 @@ function escapeHtml(text) {
     .replaceAll("'", "&#039;");
 }
 
-function renderMissingProfileState(profileTitle, profileDescription, questionsWrapper, questionsForm) {
+function renderMissingProfileState(
+  profileTitle,
+  profileDescription,
+  questionsWrapper,
+  questionsForm
+) {
   profileTitle.textContent = "Δεν έχει επιλεγεί προφίλ";
+
   profileDescription.textContent =
     "Επίλεξε πρώτα μία κατηγορία από τη σελίδα προφίλ για να συνεχίσεις.";
 
@@ -383,7 +409,10 @@ function renderMissingProfileState(profileTitle, profileDescription, questionsWr
 
 function validateAnswers(totalQuestions) {
   for (let index = 1; index <= totalQuestions; index += 1) {
-    const checkedInput = document.querySelector(`input[name="q${index}"]:checked`);
+    const checkedInput = document.querySelector(
+      `input[name="q${index}"]:checked`
+    );
+
     if (!checkedInput) {
       return false;
     }
@@ -396,7 +425,10 @@ function collectAnswers(totalQuestions) {
   const answers = [];
 
   for (let index = 1; index <= totalQuestions; index += 1) {
-    const checkedInput = document.querySelector(`input[name="q${index}"]:checked`);
+    const checkedInput = document.querySelector(
+      `input[name="q${index}"]:checked`
+    );
+
     answers.push(Number(checkedInput.value));
   }
 
@@ -413,35 +445,77 @@ function saveAnswers(profileKey, answers) {
   );
 }
 
+
+// ============================================================
+// ΑΠΟΣΤΟΛΗ ΣΤΟ GOOGLE APPS SCRIPT
+// ============================================================
+
 async function submitViaGoogleSheet(profileKey, answers, result) {
   if (!ONLINE_API_URL) {
-    return { saved: false, reason: "not-configured" };
+    return {
+      saved: false,
+      reason: "not-configured"
+    };
   }
 
   try {
-    const body = new URLSearchParams();
-    body.set("profile", profileKey);
-    body.set("answers", JSON.stringify(answers));
-    body.set("resultType", result.type);
+    const params = new URLSearchParams();
 
-    // Το Apps Script δέχεται application/x-www-form-urlencoded στο doPost.
-    // Με no-cors δεν περιμένουμε απάντηση από τον server, ώστε η σελίδα
-    // να μην παγώνει όσο το Apps Script ολοκληρώνει την καταχώριση.
-    await fetch(ONLINE_API_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      },
-      body
-    });
+    params.set("action", "submit");
+    params.set("profile", profileKey);
+    params.set("answers", JSON.stringify(answers));
+    params.set("resultType", result.type);
+    params.set("_", String(Date.now()));
 
-    return { saved: true, reason: "sent" };
+    const response = await fetch(
+      `${ONLINE_API_URL}${ONLINE_API_URL.includes("?") ? "&" : "?"}${params.toString()}`,
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `HTTP ${response.status} ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+
+    if (!data || data.success !== true) {
+      return {
+        saved: false,
+        reason: data?.message || "Το Apps Script δεν επιβεβαίωσε την αποθήκευση.",
+        serverData: data
+      };
+    }
+
+    return {
+      saved: true,
+      reason: "server-confirmed",
+      serverData: data
+    };
+
   } catch (error) {
-    console.error("Σφάλμα αποστολής στο Google Apps Script:", error);
-    return { saved: false, reason: "connection-error" };
+    console.error(
+      "Σφάλμα αποστολής στο Google Apps Script:",
+      error
+    );
+
+    return {
+      saved: false,
+      reason:
+        error?.message ||
+        "Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script."
+    };
   }
 }
+
+
+// ============================================================
+// ONLINE STATISTICS / JSONP
+// ============================================================
 
 function loadOnlineStatistics(profileKey = null) {
   return new Promise((resolve, reject) => {
@@ -450,10 +524,17 @@ function loadOnlineStatistics(profileKey = null) {
       return;
     }
 
-    const action = profileKey ? "profileStatistics" : "statistics";
+    const action = profileKey
+      ? "profileStatistics"
+      : "statistics";
+
     const callbackName =
-      `cctvStats_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      `cctvStats_${Date.now()}_${Math.random()
+        .toString(36)
+        .slice(2)}`;
+
     const script = document.createElement("script");
+
     script.async = true;
 
     let finished = false;
@@ -467,41 +548,77 @@ function loadOnlineStatistics(profileKey = null) {
 
     const finish = (error, data) => {
       if (finished) return;
+
       finished = true;
       cleanup();
-      if (error) reject(error);
-      else resolve(data);
+
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
     };
 
     window[callbackName] = (data) => {
       if (!data || typeof data !== "object") {
-        finish(new Error("Μη έγκυρα στατιστικά από το Google Apps Script."));
+        finish(
+          new Error(
+            "Μη έγκυρα στατιστικά από το Google Apps Script."
+          )
+        );
         return;
       }
+
       if (profileKey) {
-        if (typeof data.total !== "number" || !Array.isArray(data.questions)) {
-          finish(new Error("Το Google Apps Script επέστρεψε μη έγκυρα στατιστικά προφίλ."));
+        if (
+          typeof data.total !== "number" ||
+          !Array.isArray(data.questions)
+        ) {
+          finish(
+            new Error(
+              "Το Google Apps Script επέστρεψε μη έγκυρα στατιστικά προφίλ."
+            )
+          );
           return;
         }
-      } else if (typeof data.total !== "number" || !data.profiles) {
-        finish(new Error("Το Google Apps Script επέστρεψε μη έγκυρα συνολικά στατιστικά."));
+      } else if (
+        typeof data.total !== "number" ||
+        !data.profiles
+      ) {
+        finish(
+          new Error(
+            "Το Google Apps Script επέστρεψε μη έγκυρα συνολικά στατιστικά."
+          )
+        );
         return;
       }
+
       finish(null, data);
     };
 
     script.onerror = () => {
-      finish(new Error("Δεν ήταν δυνατή η φόρτωση των στατιστικών."));
+      finish(
+        new Error(
+          "Δεν ήταν δυνατή η φόρτωση των στατιστικών."
+        )
+      );
     };
 
     timeout = setTimeout(() => {
-      finish(new Error("Timeout κατά την ανάκτηση των στατιστικών."));
+      finish(
+        new Error(
+          "Timeout κατά την ανάκτηση των στατιστικών."
+        )
+      );
     }, 8000);
 
-    const separator = ONLINE_API_URL.includes("?") ? "&" : "?";
+    const separator = ONLINE_API_URL.includes("?")
+      ? "&"
+      : "?";
+
     let url =
       `${ONLINE_API_URL}${separator}` +
-      `action=${action}` +
+      `action=${encodeURIComponent(action)}` +
       `&callback=${encodeURIComponent(callbackName)}` +
       `&t=${Date.now()}`;
 
@@ -510,145 +627,347 @@ function loadOnlineStatistics(profileKey = null) {
     }
 
     script.src = url;
+
     document.head.appendChild(script);
   });
 }
+
+
+// ============================================================
+// ΚΕΙΜΕΝΟ ΕΙΣΑΓΩΓΗΣ ΠΛΕΙΟΨΗΦΙΑΣ
+// ============================================================
 
 function getMajorityIntro(profileKey) {
   const intros = {
     beginner:
       "Ας δούμε τι απάντησε η πλειοψηφία ατόμων χωρίς προηγούμενη γνώση στα συστήματα ασφαλείας με εσάς.",
+
     intermediate:
       "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη εμπειρία στα συστήματα ασφαλείας με εσάς.",
+
     advanced:
       "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη πρακτική ή επαγγελματική εμπειρία στα συστήματα ασφαλείας με εσάς."
   };
-  return intros[profileKey] || "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη εμπειρία στα συστήματα ασφαλείας με εσάς.";
+
+  return (
+    intros[profileKey] ||
+    "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη εμπειρία στα συστήματα ασφαλείας με εσάς."
+  );
 }
 
-async function loadMajorityComparison(profileKey) {
-  const box = document.getElementById("aggregate-conclusion");
-  const distributionBox = document.getElementById("participant-distribution");
-  if (!box) return;
 
-  // Εμφανίζουμε αμέσως το πλαίσιο, ώστε η σελίδα να μη μοιάζει κολλημένη.
+// ============================================================
+// ΣΥΓΚΡΙΣΗ ΜΕ ΠΛΕΙΟΨΗΦΙΑ
+// ============================================================
+
+async function loadMajorityComparison(profileKey) {
+  const box = document.getElementById(
+    "aggregate-conclusion"
+  );
+
+  const distributionBox = document.getElementById(
+    "participant-distribution"
+  );
+
+  if (!box) {
+    return;
+  }
+
   box.innerHTML = `
     <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-    <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
+    <p>${escapeHtml(
+      getMajorityIntro(profileKey)
+    )}</p>
     <p>Φόρτωση των συγκεντρωτικών απαντήσεων…</p>
   `;
 
   try {
-    // Οι δύο ανεξάρτητες κλήσεις γίνονται παράλληλα.
-    const [profileStats, overallStats] = await Promise.all([
-      loadOnlineStatistics(profileKey),
-      loadOnlineStatistics()
-    ]);
+    const [profileStats, overallStats] =
+      await Promise.all([
+        loadOnlineStatistics(profileKey),
+        loadOnlineStatistics()
+      ]);
 
-    // Κατανομή συμμετεχόντων ακριβώς πάνω από τα κείμενα.
     if (distributionBox) {
       const labels = {
         beginner: "Άτομα χωρίς προηγούμενη γνώση",
         intermediate: "Άτομα με βασικές γνώσεις",
-        advanced: "Άτομα με πρακτική ή επαγγελματική εμπειρία"
+        advanced:
+          "Άτομα με πρακτική ή επαγγελματική εμπειρία"
       };
-      const total = Number(overallStats.total) || 0;
-      const entries = Object.entries(overallStats.profiles || {})
-        .filter(([key]) => Object.prototype.hasOwnProperty.call(labels, key))
-        .map(([key, count]) => [key, Number(count) || 0]);
+
+      const total =
+        Number(overallStats.total) || 0;
+
+      const entries = Object.entries(
+        overallStats.profiles || {}
+      )
+        .filter(([key]) =>
+          Object.prototype.hasOwnProperty.call(
+            labels,
+            key
+          )
+        )
+        .map(([key, count]) => [
+          key,
+          Number(count) || 0
+        ]);
 
       distributionBox.innerHTML = `
         <h3>Κατανομή συμμετεχόντων</h3>
-        ${entries.length ? entries.map(([key, count]) => {
-          const percentage = total ? Math.round((count / total) * 100) : 0;
-          return `
-            <div class="participant-distribution-row">
-              <p><strong>${escapeHtml(labels[key])}</strong>: ${count} άτομα (${percentage}%)</p>
-              <div class="stat-bar"><span style="width:${percentage}%"></span></div>
-            </div>
-          `;
-        }).join("") : "<p>Δεν υπάρχουν ακόμη καταγεγραμμένες συμμετοχές.</p>"}
+
+        ${
+          entries.length
+            ? entries
+                .map(([key, count]) => {
+                  const percentage = total
+                    ? Math.round(
+                        (count / total) * 100
+                      )
+                    : 0;
+
+                  return `
+                    <div class="participant-distribution-row">
+                      <p>
+                        <strong>${escapeHtml(
+                          labels[key]
+                        )}</strong>:
+                        ${count} άτομα
+                        (${percentage}%)
+                      </p>
+
+                      <div class="stat-bar">
+                        <span style="width:${percentage}%"></span>
+                      </div>
+                    </div>
+                  `;
+                })
+                .join("")
+            : "<p>Δεν υπάρχουν ακόμη καταγεγραμμένες συμμετοχές.</p>"
+        }
       `;
     }
 
     const stats = profileStats;
-    const profileQuestions = questionnaires[profileKey]?.questions || [];
-    const profileTexts = majorityTexts[profileKey] || [];
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.answers) || "{}");
-    const userAnswers = Array.isArray(saved.answers) ? saved.answers : [];
 
-    if (!stats.total || !stats.questions?.length) {
+    const profileQuestions =
+      questionnaires[profileKey]?.questions || [];
+
+    const profileTexts =
+      majorityTexts[profileKey] || [];
+
+    const saved = JSON.parse(
+      localStorage.getItem(
+        STORAGE_KEYS.answers
+      ) || "{}"
+    );
+
+    const userAnswers =
+      Array.isArray(saved.answers)
+        ? saved.answers
+        : [];
+
+    if (
+      !stats.total ||
+      !stats.questions?.length
+    ) {
       box.innerHTML = `
         <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-        <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-        <p>Δεν υπάρχουν ακόμη αρκετές καταγεγραμμένες απαντήσεις στην ίδια κατηγορία για να υπολογιστεί πλειοψηφία.</p>
+        <p>${escapeHtml(
+          getMajorityIntro(profileKey)
+        )}</p>
+        <p>
+          Δεν υπάρχουν ακόμη αρκετές
+          καταγεγραμμένες απαντήσεις στην ίδια
+          κατηγορία για να υπολογιστεί πλειοψηφία.
+        </p>
       `;
+
       return;
     }
 
-    const cards = stats.questions.map((questionStats, questionIndex) => {
-      const counts = (questionStats.counts || [0, 0, 0]).map(Number);
-      const max = Math.max(...counts);
-      let winners = counts
-        .map((count, index) => ({ count, index }))
-        .filter(item => item.count === max && max > 0);
+    const cards = stats.questions
+      .map((questionStats, questionIndex) => {
+        const counts = (
+          questionStats.counts || [0, 0, 0]
+        ).map(Number);
 
-      // Σε ισοπαλία εμφανίζεται μόνο η απάντηση που επέλεξε ο χρήστης,
-      // εφόσον αυτή ανήκει στις ισόπαλες απαντήσεις.
-      if (winners.length > 1) {
-        const userAnswer = Number(userAnswers[questionIndex]);
-        const userWinner = winners.find(item => item.index === userAnswer - 1);
-        winners = userWinner ? [userWinner] : [];
-      }
+        const max = Math.max(...counts);
 
-      const question = profileQuestions[questionIndex];
-      const textsForQuestion = profileTexts[questionIndex] || [];
-      if (!question || !winners.length) {
+        let winners = counts
+          .map((count, index) => ({
+            count,
+            index
+          }))
+          .filter(
+            item =>
+              item.count === max &&
+              max > 0
+          );
+
+        /*
+         * Σε ισοπαλία εμφανίζεται μόνο
+         * η απάντηση που επέλεξε ο χρήστης,
+         * εφόσον είναι μία από τις ισόπαλες.
+         */
+        if (winners.length > 1) {
+          const userAnswer = Number(
+            userAnswers[questionIndex]
+          );
+
+          const userWinner = winners.find(
+            item =>
+              item.index ===
+              userAnswer - 1
+          );
+
+          winners = userWinner
+            ? [userWinner]
+            : [];
+        }
+
+        const question =
+          profileQuestions[questionIndex];
+
+        const textsForQuestion =
+          profileTexts[questionIndex] || [];
+
+        if (
+          !question ||
+          !winners.length
+        ) {
+          return `
+            <article class="question-card majority-question-card">
+              <p class="question-step">
+                Ερώτηση ${questionIndex + 1}
+              </p>
+
+              <h4>
+                ${escapeHtml(
+                  question?.title ||
+                    `Ερώτηση ${questionIndex + 1}`
+                )}
+              </h4>
+
+              <p>
+                Υπάρχει ισοπαλία στις πρώτες
+                απαντήσεις και η επιλογή σου
+                δεν ανήκει στις ισόπαλες
+                απαντήσεις.
+              </p>
+            </article>
+          `;
+        }
+
+        const winnerBlocks = winners
+          .map(({ count, index }) => {
+            const percentage = Math.round(
+              (count / stats.total) * 100
+            );
+
+            const answerName =
+              question.options[index] ||
+              `Απάντηση ${index + 1}`;
+
+            const text =
+              textsForQuestion[index] ||
+              "Δεν υπάρχει διαθέσιμο κείμενο για αυτή την απάντηση.";
+
+            return `
+              <div class="majority-answer">
+
+                <p>
+                  <strong>
+                    Η απάντηση της πλειοψηφίας:
+                  </strong>
+                  «${escapeHtml(answerName)}»
+                </p>
+
+                <p>
+                  ${escapeHtml(text).replaceAll(
+                    "\n",
+                    "<br>"
+                  )}
+                </p>
+
+                <p class="majority-percentage">
+                  <strong>
+                    ${percentage}%
+                  </strong>
+                  (${count} από
+                  ${stats.total} άτομα)
+                </p>
+
+              </div>
+            `;
+          })
+          .join("");
+
         return `
           <article class="question-card majority-question-card">
-            <p class="question-step">Ερώτηση ${questionIndex + 1}</p>
-            <h4>${escapeHtml(question?.title || `Ερώτηση ${questionIndex + 1}`)}</h4>
-            <p>Υπάρχει ισοπαλία στις πρώτες απαντήσεις και η επιλογή σου δεν ανήκει στις ισόπαλες απαντήσεις.</p>
+
+            <p class="question-step">
+              Ερώτηση ${questionIndex + 1}
+            </p>
+
+            <h4>
+              ${escapeHtml(question.title)}
+            </h4>
+
+            ${winnerBlocks}
+
           </article>
         `;
-      }
-
-      const winnerBlocks = winners.map(({ count, index }) => {
-        const percentage = Math.round((count / stats.total) * 100);
-        const answerName = question.options[index] || `Απάντηση ${index + 1}`;
-        const text = textsForQuestion[index] || "Δεν υπάρχει διαθέσιμο κείμενο για αυτή την απάντηση.";
-        return `
-          <div class="majority-answer">
-            <p><strong>Η απάντηση της πλειοψηφίας:</strong> «${escapeHtml(answerName)}»</p>
-            <p>${escapeHtml(text).replaceAll("\n", "<br>")}</p>
-            <p class="majority-percentage"><strong>${percentage}%</strong> (${count} από ${stats.total} άτομα)</p>
-          </div>
-        `;
-      }).join("");
-
-      return `
-        <article class="question-card majority-question-card">
-          <p class="question-step">Ερώτηση ${questionIndex + 1}</p>
-          <h4>${escapeHtml(question.title)}</h4>
-          ${winnerBlocks}
-        </article>
-      `;
-    }).join("");
+      })
+      .join("");
 
     box.innerHTML = `
-      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-      <div class="majority-results">${cards}</div>
+      <h3>
+        Τι απάντησε η πλειοψηφία της ομάδας σου;
+      </h3>
+
+      <p>
+        ${escapeHtml(
+          getMajorityIntro(profileKey)
+        )}
+      </p>
+
+      <div class="majority-results">
+        ${cards}
+      </div>
     `;
+
   } catch (error) {
-    console.error("Σφάλμα σύγκρισης με την ομάδα:", error);
+    console.error(
+      "Σφάλμα σύγκρισης με την ομάδα:",
+      error
+    );
+
     box.innerHTML = `
-      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-      <p>Δεν ήταν δυνατή αυτή τη στιγμή η φόρτωση των συγκεντρωτικών απαντήσεων. Η απάντησή σου έχει παραμείνει διαθέσιμη στη σελίδα.</p>
+      <h3>
+        Τι απάντησε η πλειοψηφία της ομάδας σου;
+      </h3>
+
+      <p>
+        ${escapeHtml(
+          getMajorityIntro(profileKey)
+        )}
+      </p>
+
+      <p>
+        Δεν ήταν δυνατή αυτή τη στιγμή η
+        φόρτωση των συγκεντρωτικών απαντήσεων.
+        Η απάντησή σου έχει παραμείνει διαθέσιμη
+        στη σελίδα.
+      </p>
     `;
   }
 }
+
+
+// ============================================================
+// ΑΞΙΟΛΟΓΗΣΗ ΑΠΑΝΤΗΣΕΩΝ
+// ============================================================
 
 function evaluateAnswers(profileKey, answers) {
   const totals = {
@@ -657,26 +976,49 @@ function evaluateAnswers(profileKey, answers) {
     balanced: 0
   };
 
-  answers.forEach((answerValue, questionIndex) => {
-    const optionScores = scoringMap[profileKey][questionIndex][answerValue - 1];
-    totals.security += optionScores.security;
-    totals.privacy += optionScores.privacy;
-    totals.balanced += optionScores.balanced;
-  });
+  answers.forEach(
+    (answerValue, questionIndex) => {
+      const optionScores =
+        scoringMap[profileKey][
+          questionIndex
+        ][answerValue - 1];
 
-  if (totals.security > totals.privacy && totals.security > totals.balanced) {
+      totals.security +=
+        optionScores.security;
+
+      totals.privacy +=
+        optionScores.privacy;
+
+      totals.balanced +=
+        optionScores.balanced;
+    }
+  );
+
+  if (
+    totals.security > totals.privacy &&
+    totals.security > totals.balanced
+  ) {
     return {
       type: "security",
-      title: "Δίνεις μεγαλύτερη έμφαση στην ασφάλεια.",
+
+      title:
+        "Δίνεις μεγαλύτερη έμφαση στην ασφάλεια.",
+
       text:
         "Οι απαντήσεις σου δείχνουν ότι βλέπεις θετικά τη χρήση CCTV όταν αυτά συνδέονται με την προστασία ανθρώπων και χώρων. Παράλληλα, έχει αξία να εξετάζονται και τα όρια χρήσης τους ώστε η εφαρμογή τους να παραμένει υπεύθυνη."
     };
   }
 
-  if (totals.privacy > totals.security && totals.privacy > totals.balanced) {
+  if (
+    totals.privacy > totals.security &&
+    totals.privacy > totals.balanced
+  ) {
     return {
       type: "privacy",
-      title: "Σε απασχολούν περισσότερο τα όρια και η ιδιωτικότητα.",
+
+      title:
+        "Σε απασχολούν περισσότερο τα όρια και η ιδιωτικότητα.",
+
       text:
         "Οι απαντήσεις σου δείχνουν αυξημένο προβληματισμό για την επιτήρηση, την αναγκαιότητα εγκατάστασης και τη σωστή διαχείριση του υλικού. Αυτό δείχνει ότι αξιολογείς σοβαρά τις πιθανές αρνητικές συνέπειες της χρήσης CCTV."
     };
@@ -684,18 +1026,32 @@ function evaluateAnswers(profileKey, answers) {
 
   return {
     type: "balanced",
-    title: "Η στάση σου είναι περισσότερο ισορροπημένη.",
+
+    title:
+      "Η στάση σου είναι περισσότερο ισορροπημένη.",
+
     text:
       "Οι απαντήσεις σου δείχνουν ότι αναγνωρίζεις τόσο τη χρησιμότητα των CCTV όσο και τους περιορισμούς ή κινδύνους που τα συνοδεύουν. Φαίνεται ότι αντιμετωπίζεις το θέμα με πιο σύνθετο και σταθμισμένο τρόπο."
   };
 }
 
+
+// ============================================================
+// ΑΠΟΘΗΚΕΥΣΗ / ΦΟΡΤΩΣΗ ΑΤΟΜΙΚΟΥ ΑΠΟΤΕΛΕΣΜΑΤΟΣ
+// ============================================================
+
 function saveResult(result) {
-  localStorage.setItem(STORAGE_KEYS.result, JSON.stringify(result));
+  localStorage.setItem(
+    STORAGE_KEYS.result,
+    JSON.stringify(result)
+  );
 }
 
 function loadResult() {
-  const rawResult = localStorage.getItem(STORAGE_KEYS.result);
+  const rawResult =
+    localStorage.getItem(
+      STORAGE_KEYS.result
+    );
 
   if (!rawResult) {
     return null;
@@ -708,172 +1064,414 @@ function loadResult() {
   }
 }
 
-async function renderQuestionResult(result) {
-  const resultSection = document.getElementById("result-section");
-  const resultTitle = document.getElementById("result-title");
-  const resultText = document.getElementById("result-text");
 
-  if (!resultSection || !resultTitle || !resultText) {
+// ============================================================
+// ΕΜΦΑΝΙΣΗ ΠΡΟΣΩΠΙΚΟΥ ΑΠΟΤΕΛΕΣΜΑΤΟΣ
+// ============================================================
+
+async function renderQuestionResult(result) {
+  const resultSection =
+    document.getElementById(
+      "result-section"
+    );
+
+  const resultTitle =
+    document.getElementById(
+      "result-title"
+    );
+
+  const resultText =
+    document.getElementById(
+      "result-text"
+    );
+
+  if (
+    !resultSection ||
+    !resultTitle ||
+    !resultText
+  ) {
     return;
   }
 
-  resultTitle.textContent = result.title;
-  resultText.textContent = result.text;
-  resultSection.hidden = false;
-  resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  resultTitle.textContent =
+    result.title;
 
-  const profileKey = getSelectedProfileKey();
-  // Το προσωπικό αποτέλεσμα εμφανίζεται αμέσως. Τα online στατιστικά
-  // φορτώνονται στο παρασκήνιο ώστε η σελίδα να μην μπλοκάρει.
-  void loadMajorityComparison(profileKey);
+  resultText.textContent =
+    result.text;
+
+  resultSection.hidden = false;
+
+  resultSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  const profileKey =
+    getSelectedProfileKey();
+
+  /*
+   * Το προσωπικό αποτέλεσμα εμφανίζεται αμέσως.
+   * Τα στατιστικά φορτώνονται παράλληλα.
+   */
+  void loadMajorityComparison(
+    profileKey
+  );
 }
 
+
+// ============================================================
+// ΣΥΝΟΛΙΚΟ ΣΥΜΠΕΡΑΣΜΑ
+// ============================================================
+
 async function loadAggregateConclusion() {
-  const box = document.getElementById("aggregate-conclusion");
-  if (!box) return;
+  const box =
+    document.getElementById(
+      "aggregate-conclusion"
+    );
+
+  if (!box) {
+    return;
+  }
 
   try {
-    const stats = await loadOnlineStatistics();
+    const stats =
+      await loadOnlineStatistics();
 
     const labels = {
-      beginner: "Άτομα χωρίς προηγούμενη γνώση",
-      intermediate: "Άτομα με βασικές γνώσεις",
-      advanced: "Άτομα με πρακτική ή επαγγελματική εμπειρία"
+      beginner:
+        "Άτομα χωρίς προηγούμενη γνώση",
+
+      intermediate:
+        "Άτομα με βασικές γνώσεις",
+
+      advanced:
+        "Άτομα με πρακτική ή επαγγελματική εμπειρία"
     };
 
-    const entries = Object.entries(stats.profiles).sort((a, b) => b[1] - a[1]);
-    const [winnerKey, winnerCount] = entries[0] || [];
+    const entries =
+      Object.entries(
+        stats.profiles
+      ).sort(
+        (a, b) => b[1] - a[1]
+      );
 
-    if (!winnerKey || !stats.total) {
-      box.innerHTML = "<p>Δεν υπάρχουν ακόμη αρκετές απαντήσεις για συνολικό συμπέρασμα.</p>";
+    const [
+      winnerKey,
+      winnerCount
+    ] = entries[0] || [];
+
+    if (
+      !winnerKey ||
+      !stats.total
+    ) {
+      box.innerHTML =
+        "<p>Δεν υπάρχουν ακόμη αρκετές απαντήσεις για συνολικό συμπέρασμα.</p>";
+
       return;
     }
 
-    const percentage = Math.round((winnerCount / stats.total) * 100);
+    const percentage =
+      Math.round(
+        (winnerCount /
+          stats.total) *
+          100
+      );
+
     box.innerHTML = `
-      <h3>Συνολικό συμπέρασμα μέχρι τώρα</h3>
+      <h3>
+        Συνολικό συμπέρασμα μέχρι τώρα
+      </h3>
+
       <p>
-        Από τις <strong>${stats.total}</strong> καταγεγραμμένες συμμετοχές,
+        Από τις
+        <strong>${stats.total}</strong>
+        καταγεγραμμένες συμμετοχές,
         η μεγαλύτερη ομάδα είναι η
-        <strong>${labels[winnerKey]}</strong>, με
-        <strong>${winnerCount}</strong> άτομα (${percentage}%).
+        <strong>
+          ${escapeHtml(
+            labels[winnerKey]
+          )}
+        </strong>,
+        με
+        <strong>
+          ${winnerCount}
+        </strong>
+        άτομα
+        (${percentage}%).
       </p>
     `;
+
   } catch (error) {
     console.error(error);
   }
 }
 
-function renderInfoResult() {
-  const resultSection = document.getElementById("personalized-result-section");
-  const resultTitle = document.getElementById("personalized-result-title");
-  const resultText = document.getElementById("personalized-result-text");
 
-  if (!resultSection || !resultTitle || !resultText) {
+// ============================================================
+// ΕΜΦΑΝΙΣΗ INFO RESULT
+// ============================================================
+
+function renderInfoResult() {
+  const resultSection =
+    document.getElementById(
+      "personalized-result-section"
+    );
+
+  const resultTitle =
+    document.getElementById(
+      "personalized-result-title"
+    );
+
+  const resultText =
+    document.getElementById(
+      "personalized-result-text"
+    );
+
+  if (
+    !resultSection ||
+    !resultTitle ||
+    !resultText
+  ) {
     return;
   }
 
-  const savedResult = loadResult();
+  const savedResult =
+    loadResult();
 
   if (!savedResult) {
     return;
   }
 
-  resultTitle.textContent = savedResult.title;
-  resultText.textContent = savedResult.text;
+  resultTitle.textContent =
+    savedResult.title;
+
+  resultText.textContent =
+    savedResult.text;
+
   resultSection.hidden = false;
 }
 
-function renderQuestionsPage() {
-  const profileTitle = document.getElementById("profile-title");
-  const profileDescription = document.getElementById("profile-description");
-  const questionsWrapper = document.getElementById("questions-wrapper");
-  const questionsForm = document.getElementById("questions-form");
 
-  if (!profileTitle || !profileDescription || !questionsWrapper || !questionsForm) {
+// ============================================================
+// ΣΕΛΙΔΑ ΕΡΩΤΗΣΕΩΝ
+// ============================================================
+
+function renderQuestionsPage() {
+  const profileTitle =
+    document.getElementById(
+      "profile-title"
+    );
+
+  const profileDescription =
+    document.getElementById(
+      "profile-description"
+    );
+
+  const questionsWrapper =
+    document.getElementById(
+      "questions-wrapper"
+    );
+
+  const questionsForm =
+    document.getElementById(
+      "questions-form"
+    );
+
+  if (
+    !profileTitle ||
+    !profileDescription ||
+    !questionsWrapper ||
+    !questionsForm
+  ) {
     return;
   }
 
-  const selectedProfileKey = getSelectedProfileKey();
-  const selectedProfile = questionnaires[selectedProfileKey];
+  const selectedProfileKey =
+    getSelectedProfileKey();
+
+  const selectedProfile =
+    questionnaires[
+      selectedProfileKey
+    ];
 
   if (!selectedProfile) {
-    renderMissingProfileState(profileTitle, profileDescription, questionsWrapper, questionsForm);
+    renderMissingProfileState(
+      profileTitle,
+      profileDescription,
+      questionsWrapper,
+      questionsForm
+    );
+
     return;
   }
 
-  profileTitle.textContent = selectedProfile.title;
-  profileDescription.textContent = selectedProfile.description;
+  profileTitle.textContent =
+    selectedProfile.title;
 
-  questionsWrapper.innerHTML = selectedProfile.questions
-    .map((question, index) => createQuestionMarkup(question, index))
-    .join("");
+  profileDescription.textContent =
+    selectedProfile.description;
 
+  questionsWrapper.innerHTML =
+    selectedProfile.questions
+      .map(
+        (question, index) =>
+          createQuestionMarkup(
+            question,
+            index
+          )
+      )
+      .join("");
+
+  /*
+   * Το κλείδωμα βρίσκεται εκτός του
+   * submit handler ώστε να ενεργοποιείται
+   * αμέσως πριν από οποιαδήποτε αποστολή.
+   */
   let submissionLocked = false;
 
-  questionsForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  questionsForm.addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
 
-    if (submissionLocked) {
-      return;
-    }
-
-    const isValid = validateAnswers(selectedProfile.questions.length);
-    if (!isValid) {
-      alert("Παρακαλώ απάντησε σε όλες τις ερωτήσεις πριν συνεχίσεις.");
-      return;
-    }
-
-    const answers = collectAnswers(selectedProfile.questions.length);
-    // Κλείδωμα πριν από οποιαδήποτε δικτυακή κλήση.
-    // Το κλείδωμα αφορά τη συγκεκριμένη συμπλήρωση της φόρμας και
-    // εμποδίζει διπλό click/διπλή υποβολή χωρίς να εμποδίζει μια
-    // μελλοντική νέα συμμετοχή.
-    submissionLocked = true;
-
-    const submitButton = document.getElementById("submit-button");
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.setAttribute("aria-disabled", "true");
-      submitButton.textContent = "Υποβολή…";
-    }
-
-    saveAnswers(selectedProfileKey, answers);
-
-    const result = evaluateAnswers(selectedProfileKey, answers);
-    saveResult(result);
-
-    const submitStatus = document.getElementById("submit-status");
-    if (submitStatus) {
-      submitStatus.textContent = "Η απάντησή σου υποβάλλεται…";
-      submitStatus.className = "submit-status";
-    }
-
-    // Δεν περιμένουμε το Google Apps Script για να εμφανίσουμε τη συνέχεια.
-    // Η αποστολή εκτελείται παράλληλα.
-    const savePromise = submitViaGoogleSheet(selectedProfileKey, answers, result);
-
-    renderQuestionResult(result);
-
-    const serverResult = await savePromise;
-    if (submitStatus) {
-      if (serverResult.saved) {
-        submitStatus.textContent = "Η απάντησή σου καταγράφηκε επιτυχώς.";
-        submitStatus.className = "submit-status success";
-      } else {
-        const detail = serverResult.reason === "not-configured"
-          ? "Δεν έχει ρυθμιστεί το online API."
-          : serverResult.reason === "connection-error"
-            ? "Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script."
-            : serverResult.reason || "Άγνωστο σφάλμα.";
-        submitStatus.textContent = `Σφάλμα κατά την αποθήκευση: ${detail}`;
-        submitStatus.className = "submit-status warning";
+      /*
+       * Απολύτως πρώτο check.
+       * Αποτρέπει δεύτερο click,
+       * ακόμη κι αν η πρώτη αποστολή
+       * βρίσκεται ακόμη σε εξέλιξη.
+       */
+      if (submissionLocked) {
+        return;
       }
+
+      const isValid =
+        validateAnswers(
+          selectedProfile.questions.length
+        );
+
+      if (!isValid) {
+        alert(
+          "Παρακαλώ απάντησε σε όλες τις ερωτήσεις πριν συνεχίσεις."
+        );
+
+        return;
+      }
+
+      const answers =
+        collectAnswers(
+          selectedProfile.questions.length
+        );
+
+      /*
+       * Κλείδωμα ΠΡΙΝ από οποιαδήποτε
+       * δικτυακή ενέργεια.
+       */
+      submissionLocked = true;
+
+      const submitButton =
+        document.getElementById(
+          "submit-button"
+        );
+
+      if (submitButton) {
+        submitButton.disabled = true;
+
+        submitButton.setAttribute(
+          "aria-disabled",
+          "true"
+        );
+
+        submitButton.textContent =
+          "Υποβολή…";
+      }
+
+      saveAnswers(
+        selectedProfileKey,
+        answers
+      );
+
+      const result =
+        evaluateAnswers(
+          selectedProfileKey,
+          answers
+        );
+
+      saveResult(result);
+
+      const submitStatus =
+        document.getElementById(
+          "submit-status"
+        );
+
+      if (submitStatus) {
+        submitStatus.textContent =
+          "Η απάντησή σου υποβάλλεται…";
+
+        submitStatus.className =
+          "submit-status";
+      }
+
+      /*
+       * Τώρα περιμένουμε την πραγματική
+       * απάντηση του Apps Script.
+       *
+       * Δεν εμφανίζουμε επιτυχία
+       * πριν επιβεβαιωθεί από τον server.
+       */
+      const serverResult =
+        await submitViaGoogleSheet(
+          selectedProfileKey,
+          answers,
+          result
+        );
+
+      if (submitStatus) {
+        if (serverResult.saved) {
+          submitStatus.textContent =
+            "Η απάντησή σου καταγράφηκε επιτυχώς.";
+
+          submitStatus.className =
+            "submit-status success";
+        } else {
+          let detail =
+            serverResult.reason ||
+            "Άγνωστο σφάλμα.";
+
+          submitStatus.textContent =
+            `Σφάλμα κατά την αποθήκευση: ${detail}`;
+
+          submitStatus.className =
+            "submit-status warning";
+
+          console.error(
+            "Το Apps Script δεν επιβεβαίωσε την αποθήκευση:",
+            serverResult
+          );
+        }
+      }
+
+      /*
+       * Το αποτέλεσμα μπορεί να εμφανιστεί
+       * μετά την αποστολή. Έτσι ο χρήστης
+       * βλέπει πρώτα πραγματική επιβεβαίωση
+       * αποθήκευσης και μετά συνεχίζει.
+       */
+      await renderQuestionResult(
+        result
+      );
     }
-  });
+  );
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderQuestionsPage();
-  renderInfoResult();
-});
+
+// ============================================================
+// INITIALIZATION
+// ============================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    renderQuestionsPage();
+    renderInfoResult();
+  }
+);
