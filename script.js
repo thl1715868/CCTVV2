@@ -152,6 +152,92 @@ const questionnaires = {
   }
 };
 
+
+// Κείμενα που εμφανίζονται όταν μια συγκεκριμένη απάντηση είναι η πλειοψηφική
+const majorityTexts = {
+  "beginner": [
+    [
+      "Είναι λογικό σε σημεία που\nεπισκεπτόμαστε στην καθημερινότητα μας και συναντάμε κάμερες να νιώθουμε ένα\nσχετικό αίσθημα ασφάλειας, χωρίς απαραίτητα να γνωρίζουμε ότι κάποιος όντως\nπαρακολουθεί τις κάμερες. Η ύπαρξη και μόνο των καμερών κάνει κάποιον επιτήδειο\nνα σκεφτεί καλύτερα τις αποφάσεις του..",
+      "Κάποιες φορές είναι αναμενόμενη\nη ύπαρξη καμερών δεδομένου του χώρου, άλλες φορές μας κάνει να σκεφτόμαστε αν\nείναι όντως απαραίτητη η ύπαρξη τους σε τόσα μέρη. Δυστυχώς ως τώρα έχει\nαποδειχθεί ότι οι κάμερες δεν είναι απαραίτητες μέχρι να είναι ήδη αργά.",
+      "Μία λογική αντίδραση ανεξαρτήτου\nεμπειρίας στον τομέα. Είναι δύσκολο αλλά όχι αδύνατο ένα εργαλείο προστασίας όπως\nοι κάμερες να χρησιμοποιηθούν κακόβουλα."
+    ],
+    [
+      "Και ισχύει σε μεγάλο βαθμό, καθώς\nβλέπουμε πολύ λιγότερες απόπειρες δολιοφθορών/κλοπής όχι μόνο σε χώρους που\nέχουν κάμερες , αλλά και σε χώρους που απλά φέρουν την απαραίτητή σήμανση για\nτην ύπαρξή τους.",
+      "Η τεχνολογία έχει πραγματοποιήσει\nτεράστια άλματα στην ανίχνευση αλλά και πιο συγκεκριμένα στον διαχωρισμό\nαπειλών με οποιοδήποτε άλλο ερέθισμα. Παρόλα αυτά, στο σημείο που βρίσκονται ως\nσήμερα τα περισσότερα συστήματα , εξακολουθεί να είναι απαραίτητη και η\nανθρώπινη παρέμβαση.",
+      "Με όσα βλέπουμε να συμβαίνουν\nκαθημερινά , είναι λογικό να υπάρχει μια έλλειψη εμπιστοσύνης στα συστήματα CCTV. Άλλωστε κάποια συμβάντα\nδεν μπορούν να αναιρεθούν με την ύπαρξη του πλάνου μίας κάμερας, παρά μόνο να\nεξεταστούν , ώστε να φροντίσουμε να μην επαναληφθούν με οποιοδήποτε μέσο μας είναι\nδιαθέσιμο."
+    ],
+    [
+      "Όχι μόνο είναι απαραίτητο, επιβάλλεται.\nΗ ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης\nη οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που\nχρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι\nμια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει\nστον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος.",
+      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης\nκάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
+      "Μπορεί στα μάτια πολλών να μην\nσημαίνει πολλά βλέποντάς τόσες σημάνσεις φύλαξης καθημερινά. Όμως στην\nπραγματικότητα όχι μόνο είναι απαραίτητο, επιβάλλεται. Η ύπαρξη συστημάτων CCTV απαιτεί\nκαι την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης η οποία προστατεύει τα\nδικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που χρησιμοποιηθεί\nοποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι μια απλή προειδοποίηση\nπρος οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο,\nαυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος."
+    ],
+    [
+      "Από τους μεγαλύτερους κινδύνους της\nσημερινής συνεχώς εξελισσόμενης κοινωνίας. Το ερώτημα αν αξίζει η ασφάλεια του\nατόμου την σχεδόν ολική του έκθεση σε δεκάδες μέσα καταγραφής καθημερινά είναι ένα\nερώτημα που απασχολεί και θα συνεχίσει να απασχολεί τους σχετικούς φορείς για αρκετά\nχρόνια ακόμη.",
+      "Μια κακή εγκατάσταση ασφαλείας\nμπορεί να προκαλέσει την μεγαλύτερη ζημία σε περίπτωση που γίνει αξιοποίηση των\nκενών ασφαλείας τόσο στην διαχείριση του συστήματος , όσο και στο υλικό που\nμπορεί να αποκτήσει πρόσβαση ένα κακόβουλο άτομο. Είναι ειρωνικό να χρησιμοποιείται\nένα σύστημα ασφαλείας ενάντια στην ασφάλειά μας αλλά είναι ένας ακόμη συνεχής\nαγώνας τον οποίο καλούνται καθημερινά να αντιμετωπίσουν σχεδιαστές εξοπλισμού\nκαι τεχνικοί εγκαταστάσεων συστημάτων ασφαλείας.",
+      "Η τεχνολογία εξελίσσεται ραγδαία\n, αυτό πλέον είναι γνωστό σε όλους. Αυτό δεν σημαίνει σε καμία περίπτωση ότι\nπρέπει εμείς να επαναπαυτούμε. Κάθε άλλο, πρέπει συνεχώς να ενημερωνόμαστε\nσχετικά με τις νέες τεχνολογίες που μπορεί να κρύβουν το επόμενο βήμα που θα μας\nφέρει πιο κοντά στην ασφάλειά μας ή στην έκθεσή μας σε κινδύνους."
+    ],
+    [
+      "Η απάντηση σε αυτό το ερώτημα\nείναι καθαρά υποκειμενική. Στην προκειμένη περίπτωση, από το κοινό που είχε\nελάχιστες γνώσεις πάνω στα συστήματα παρακολούθησης , οι περισσότεροι έκριναν ότι\nη ύπαρξη καμερών σε κάθε σημείο που είναι τεχνικά δυνατό είναι κάτι θετικό. Με\nπροϋπόθεση όμως να συμβάλουν στην ασφάλεια του κοινού. Για να επιτευχθεί αυτό\nαπαιτείται η αντίστοιχη τεχνογνωσία κατά τη εγκατάσταση και την χρήση μετέπειτα\nγια την αποφυγή σημείων εισβολής τόσο ψηφιακών όσο και πραγματικών σημείων του\nχώρου.",
+      "Η απάντηση σε αυτό το ερώτημα\nείναι καθαρά υποκειμενική. Στην προκειμένη περίπτωση, από το κοινό που είχε\nελάχιστες γνώσεις πάνω στα συστήματα παρακολούθησης , οι περισσότεροι έκριναν\nότι η χρήση καμερών πρέπει να γίνεται αποκλειστικά στα σημεία όπου η χρήση τους\nείναι απαραίτητη για την εξασφάλιση της τάξης. Αυτή η χρήση όμως περιγράφει μια\nτεράστια γκρι ζώνη. Ποιος θα καθορίσει εάν ο χώρος έχει ανάγκη την ύπαρξη\nκαμερών ή όχι? Και αν υπάρχει η ανάγκη τοποθέτησης τους, σε τι βαθμό? Τι χώροι θα\nκαλύπτονται, ποιες ώρες, με τι είδους ανίχνευση και τι θα σημαίνει η καταγραφή μας\nσε μια τέτοια κάμερα. Όλα τα παραπάνω και πολλά ακόμη αντίστοιχα ήταν και θα\nείναι οι καθοριστικοί παράγοντες στις εγκαταστάσεις CCTV των επόμενων\nχρόνων.",
+      "Η απάντηση σε αυτό το ερώτημα\nείναι καθαρά υποκειμενική. Στην προκειμένη περίπτωση, από το κοινό που είχε\nελάχιστες γνώσεις πάνω στα συστήματα παρακολούθησης , οι περισσότεροι έκριναν\nότι η τοποθέτηση τους συχνά ξεπερνά την ρεαλιστική ανάγκη της ύπαρξής τους , με\nόποια συνέπεια ακολουθεί αυτό."
+    ]
+  ],
+  "intermediate": [
+    [
+      "Είναι συνήθεια όλων μας όταν\nαντιλαμβανόμαστε την ύπαρξη καμερών σε έναν χώρο η επόμενη σκέψη μας να είναι να\nβρούμε τι αντικείμενα καλείται η κάμερα αυτή να φυλάξει. Αυτό μπορεί να\nσημαίνει από την ύπαρξη συγκεκριμένων αγαθών τα οποία πρέπει να προστατευθούν\nστον χώρο , μέχρι και την γενικότερη εξασφάλιση τάξης.",
+      "Βρισκόμαστε σε μεταβατικό στάδιο\nστον χώρο των CCTV όσον αφορά την αντίληψη του κόσμου για την ύπαρξη τους σε\nχώρους τις καθημερινότητάς μας. Για τους περισσότερους όμως, η ύπαρξή καμερών\nσε έναν κοινό χώρο εργασίας είναι από τα πιο χαρακτηριστικά παραδείγματα\nκαθημερινής αλληλεπίδρασης με ένα τέτοιο σύστημα, ανεξάρτητα με το αν κρίνει κανείς\nτην ύπαρξή τους ακόμη και εκεί κρίσιμη ή όχι.",
+      "Με όσα βλέπουμε να συμβαίνουν\nκαθημερινά , είναι λογικό να υπάρχει μια έλλειψη εμπιστοσύνης στα συστήματα CCTV. Άλλωστε κάποια συμβάντα\nδεν μπορούν να αναιρεθούν με την ύπαρξη του πλάνου μίας κάμερας, παρά μόνο να\nεξεταστούν , ώστε να φροντίσουμε να μην επαναληφθούν με οποιοδήποτε μέσο μας είναι\nδιαθέσιμο."
+    ],
+    [
+      "Είναι γεγονός ότι η σωστή τοποθέτηση\nενός συστήματος CCTV είναι από τους κυριότερους παράγοντες εξασφάλισης της ορθής\nλειτουργίας και χρήσης του. Τόσο η τοποθέτηση των καμερών για ορθή κάλυψη του\nχώρου αλλά και η ανθεκτικότητα του συστήματος σε φυσικές φθορές και δολιοφθορές\nείναι βασικά κριτήρια για την εξασφάλιση προστασίας του χώρου σε βάθος χρόνου.",
+      "Μία εικόνα χίλιες λέξεις. Έχουμε\nπεράσει την εποχή που τα πλάνα καμερών που είχαμε μετα βίας αποδείκνυαν την έκβαση\nκάποιου γεγονότος με τον τρόπο που είχαν ήδη κάνει εικασία οι αρχές προστασίας.\nΠλέον οι κάμερες παίζουν κομβικό ρόλο στην εξιχνίαση εγκλημάτων και στην αναγνώριση\nκρίσιμων προσώπων για την ταχύτερη επιβολή της τάξης.",
+      "Μόνο και μόνο η αίσθηση της συνεχούς\nπαρακολούθησης ενός χώρου είναι αρκετή για να αποτρέψει μεγάλο ποσοστό\nκακόβουλων ατόμων τα οποία συνήθως βασίζονται στην ολική απουσία συστημάτων\nασφαλείας ή στην μερική φύλαξη του χώρου η οποία συνήθως γίνεται με προσωπικό\nφύλαξης (φύλακες/security).\nΗ 24ωρη παρακολούθηση μέσω κάμερας δημιουργεί μια νέα πολύ δυσκολότερα\nαντιμετωπίσιμη απειλή , ακόμη και για τον πιο επίδοξο εγκληματία."
+    ],
+    [
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας.",
+      "Όπως στα περισσότερα θέματα της σημερινής\nκοινωνίας, δεν υπάρχει σωστή απάντηση. Η θυσία της ασφάλειας στο όνομα της ιδιωτικότητας  είναι κάτι που λίγοι σήμερα θα δεχτούν ως\nσυνέπεια. Από την άλλη , η πλήρης έκθεση του εαυτού μας και της οποιαδήποτε\nενέργειάς μας σε κάποιο πρόσωπο που δεν γνωρίζουμε είναι ένας κρυφός φόβος όλων\nμας, χωρίς απαραίτητα αυτό να σημαίνει ότι θέλουμε να κρύψουμε κάτι. Το\nσυγκεκριμένο ερώτημα είναι καθαρά υποκειμενικό και θα συνεχίσει να μας απασχολεί\nστα επόμενα χρόνια εξέλιξης της τεχνολογίας."
+    ],
+    [
+      "Όχι μόνο είναι απαραίτητο, επιβάλλεται.\nΗ ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης\nη οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που\nχρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι\nμια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει\nστον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος.",
+      "Μπορεί όχι το μόνο που μετρά,\nαλλα γνωρίζατε ότι η ύπαρξη συστημάτων CCTV απαιτεί και την ύπαρξη αντίστοιχης\nπροειδοποιητικής σήμανσης η οποία προστατεύει τα δικαιώματα προσωπικής ιδιοκτησίας\nμας σε περίπτωση που χρησιμοποιηθεί οποιαδήποτε καταγραφή της συγκεκριμένης\nκάμερας? Επιπλέον, είναι μια απλή προειδοποίηση προς οποιοδήποτε κακόβουλο\nάτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο, αυτομάτως μειώνοντας τις πιθανότητες\nοποιουδήποτε συμβάντος.",
+      "Μπορεί στα μάτια πολλών να μην\nσημαίνει πολλά βλέποντάς τόσες σημάνσεις φύλαξης καθημερινά. Όμως στην\nπραγματικότητα όχι μόνο είναι απαραίτητο, επιβάλλεται. Η ύπαρξη συστημάτων CCTV απαιτεί\nκαι την ύπαρξη αντίστοιχης προειδοποιητικής σήμανσης η οποία προστατεύει τα\nδικαιώματα προσωπικής ιδιοκτησίας μας σε περίπτωση που χρησιμοποιηθεί\nοποιαδήποτε καταγραφή της συγκεκριμένης κάμερας. Επιπλέον, είναι μια απλή προειδοποίηση\nπρος οποιοδήποτε κακόβουλο άτομο σχεδιάζει να παρανομήσει στον πλησίον χώρο,\nαυτομάτως μειώνοντας τις πιθανότητες οποιουδήποτε συμβάντος."
+    ],
+    [
+      "Από τους μεγαλύτερους κινδύνους της\nσημερινής συνεχώς εξελισσόμενης κοινωνίας. Το ερώτημα αν αξίζει η ασφάλεια του\nατόμου την σχεδόν ολική του έκθεση σε δεκάδες μέσα καταγραφής καθημερινά είναι ένα\nερώτημα που απασχολεί και θα συνεχίσει να απασχολεί τους σχετικούς φορείς για αρκετά\nχρόνια ακόμη.",
+      "Μια κακή εγκατάσταση ασφαλείας\nμπορεί να προκαλέσει την μεγαλύτερη ζημία σε περίπτωση που γίνει αξιοποίηση των\nκενών ασφαλείας τόσο στην διαχείριση του συστήματος , όσο και στο υλικό που\nμπορεί να αποκτήσει πρόσβαση ένα κακόβουλο άτομο. Είναι ειρωνικό να χρησιμοποιείται\nένα σύστημα ασφαλείας ενάντια στην ασφάλειά μας αλλά είναι ένας ακόμη συνεχής\nαγώνας τον οποίο καλούνται καθημερινά να αντιμετωπίσουν σχεδιαστές εξοπλισμού\nκαι τεχνικοί εγκαταστάσεων συστημάτων ασφαλείας.",
+      "Η τεχνολογία εξελίσσεται ραγδαία\n, αυτό πλέον είναι γνωστό σε όλους. Αυτό δεν σημαίνει σε καμία περίπτωση ότι\nπρέπει εμείς να επαναπαυτούμε. Κάθε άλλο, πρέπει συνεχώς να ενημερωνόμαστε\nσχετικά με τις νέες τεχνολογίες που μπορεί να κρύβουν το επόμενο βήμα που θα μας\nφέρει πιο κοντά στην ασφάλειά μας ή στην έκθεσή μας σε κινδύνους."
+    ]
+  ],
+  "advanced": [
+    [
+      "Σωστή σκέψη . Ο ορθός σχεδιασμός\nενός συστήματος είναι καθοριστικός παράγοντας της αξίας του. Τόσο στο κομμάτι\nεξασφάλισης προστασίας του χώρου , όσο και στο κομμάτι ορθού καταμερισμού το\nεξοπλισμού (αποφυγή περιττών υλικών/εξόδων χωρίς συμβιβασμό στην ασφάλεια), το\nκαλό σύστημα φαίνεται από το σχέδιο του και την προνοητικότητα του σχεδιαστή\nτου.",
+      "Ο κανόνας του «ό,τι πληρώνεις\nπαίρνεις",
+      "Όσο εξελιγμένη και αν είναι μία κάμερα, αν δεν τοποθετηθεί\nσωστά είναι άλλη μια δολιοφθορά , πολλές φορές με υψηλό κόστος στην ασφάλεια\nμας αλλά και στο πορτοφόλι μας. Επομένως πρέπει πάντα να δίνεται ιδιαίτερη\nπροσοχή στον σχεδιασμό του κάθε χώρου που θέλουμε να φυλάξουμε καθώς το κάθε\nσημείο έχει διαφορετικές ανάγκες και τυφλά σημεία."
+    ],
+    [
+      "Για να γίνει σωστή κάλυψη ενός χώρου\n, πρέπει να υπάρχει σαφής σκοπός . Συγκεκριμένα αγαθά η πρόσωπα που έχουν ανάγκη\nνα προστατευθούν στον συγκεκριμένο χώρο. Αυτό θα καθορίσει μετέπειτα την\nεπιλογή κατάλληλων υλικών και την σωστή τοποθέτησή τους ανάλογα με τις ανάγκες\nτου χώρου που καλούμαστε να φυλάξουμε.",
+      "Μια εικόνα , χίλιες λέξεις. Πολλές\nφορές δεν αρκεί η κάλυψη συγκεκριμένων σημείων αλλά η γενικότερη κάλυψη του\nευρύτερου χώρου. Αυτό φυσικά δεν αποκλείει την εξειδικευμένη ανίχνευση ή\nαναζήτηση στο πλάνο που καλύπτει μια κάμερα (όπως για παράδειγμα τις κάμερες σε\nαεροδρόμια που συνήθως αξιοποιούν δεύτερο φακό/κάμερα για εξειδικευμένη ανίχνευση\nκινήσεων/προσώπων).",
+      "NO"
+    ],
+    [
+      "Η ιδιωτικότητα ήταν και θα συνεχίσει\nνα είναι από τα σημαντικότερα ζητήματα που κλείνουμε να αντιμετωπίσουμε στα\nσυστήματα CCTV.\nΕπομένως η πρόσβαση σε αρχεία καταγραφών πρέπει να είναι περιορισμένη και\nαποκλειστικά σε άτομα τα οποία πληρούν τις απαραίτητες προϋποθέσεις για την\nδιαχείριση τους.",
+      "Η ιδιωτικότητα ήταν και θα συνεχίσει\nνα είναι από τα σημαντικότερα ζητήματα που κλείνουμε να αντιμετωπίσουμε στα\nσυστήματα CCTV.\nΕπομένως η πρόσβαση σε αρχεία καταγραφών πρέπει να είναι περιορισμένη και\nαποκλειστικά σε άτομα τα οποία πληρούν τις απαραίτητες προϋποθέσεις για την\nδιαχείριση τους. Επομένως καλό θα ήταν να θυσιαστεί η ταχύτητα αναζήτησης με σκοπό\nτην επαγγελματική ακρίβεια και συνέπεια.",
+      "Υπάρχει λόγος που τα όρια\nκαταγραφής που επιβάλλονται από τον νόμο γίνονται ολοένα και μεγαλύτερα. Πολλά\nσυμβάντα καλούνται να έλθουν στο φως πολύ μετά τα γεγονότα που έλαβαν θέση. Αυτό\nσημαίνει ότι θα πρέπει να φροντίζουμε ολοένα και περισσότερο να υπάρχει μεγάλη\nδιάρκεια στις καταγραφές των CCTV για κάθε περίπτωση που μπορεί αυτό να κριθεί χρήσιμο στο\nμέλλον."
+    ],
+    [
+      "Η τεχνολογία εξελίσσεται ραγδαία\n, αυτό πλέον είναι γνωστό σε όλους. Αυτό δεν σημαίνει σε καμία περίπτωση ότι\nπρέπει εμείς να επαναπαυτούμε. Κάθε άλλο, πρέπει συνεχώς να ενημερωνόμαστε\nσχετικά με τις νέες τεχνολογίες που μπορεί να κρύβουν το επόμενο βήμα που θα μας\nφέρει πιο κοντά στην ασφάλειά μας ή στην έκθεσή μας σε κινδύνους.",
+      "Στην σημερινή αγορά οι λύσεις των\ngadget\nείναι άπειρες , οικονομικά συμφέρουσες και με μηδενικό κόστος\nεγκατάστασης. Φυσικά αυτό είναι μόνο η κορυφή του παγόβουνου. Λανθασμένη\nτοποθέτηση, χρήση , ακόμη και αγορά εξοπλισμού του οποίου τα χαρακτηριστικά δεν\nείναι ξεκάθαρα μπορεί να οδηγήσει σε τεράστιους κινδύνους και κενά ασφαλείας σε\nένα σύστημα που υποτίθεται τοποθετείται για να μας προστατέψει, όχι για να\nαποτελέσει έναν ακόμη κίνδυνο.",
+      "Μόνο και μόνο η αίσθηση της συνεχούς\nπαρακολούθησης ενός χώρου είναι αρκετή για να αποτρέψει μεγάλο ποσοστό\nκακόβουλων ατόμων . Η 24ωρη παρακολούθηση μέσω κάμερας δημιουργεί μια νέα πολύ\nδυσκολότερα αντιμετωπίσιμη απειλή , ακόμη και για τον πιο επίδοξο εγκληματία.\nΕπομένως είναι άξιο απορίας γιατί να γίνει τοποθέτηση ενός πλήρους συστήματος CCTV σε\nχώρο που απαιτεί φύλαξη , αλλά να μην δοθεί σε 24ωρο κέντρο παρακολούθησης\nσημάτων για την εξασφάλιση άμεσης αντιμετώπισης δολιοφθορών."
+    ],
+    [
+      "Ο σαφής σκοπός και η\nπεριορισμένη χρήση του συστήματος για την ικανοποίησή αυτού του σκοπού είναι ο\nκαλύτερος τρόπος εξασφάλισης προστασίας ενός χώρου ενώ παράλληλα διατηρείται η\nιδιωτικότητα του κάθε ατόμου που αλληλοεπιδρά στο χώρο αυτό.",
+      "Το προλαμβάνειν καλύτερο του\nθεραπεύειν.  Μερικές φορές η ύπαρξη μια\nκάμερας σε συγκεκριμένο σημείο κρίνεται απαραίτητη όταν είναι ήδη πολύ αργά.\nΕπομένως καλό είναι στον σχεδιασμό και την χρήση ενός CCTV να\nλαμβάνεται υπόψη και η προνοητικότητα , όχι μόνο τα γεγονότα που λαμβάνουν\nμέρος ως τώρα.",
+      "Όπως αναφέραμε και νωρίτερα , πολλά\nσυμβάντα καλούνται να έλθουν στο φως πολύ μετά τα γεγονότα που έλαβαν θέση. Επομένως\nείναι καθήκον μας , ειδικά σε περιπτώσεις που γνωρίζουμε ότι υπάρχει συμβάν ,\nνα διατηρούμε τα αρχεία καταγραφής ασφαλή έως ότου γίνει αίτημα χρήσης αυτών\nαπό τις αρχές προστασίας."
+    ]
+  ]
+};
+
 const scoringMap = {
   beginner: [
     [
@@ -327,51 +413,34 @@ function saveAnswers(profileKey, answers) {
   );
 }
 
-function submitViaGoogleSheet(profileKey, answers, result) {
-  return new Promise((resolve) => {
-    if (!ONLINE_API_URL) {
-      resolve({ saved: false, reason: "not-configured" });
-      return;
-    }
+async function submitViaGoogleSheet(profileKey, answers, result) {
+  if (!ONLINE_API_URL) {
+    return { saved: false, reason: "not-configured" };
+  }
 
-    const frameName = `cctv-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const iframe = document.createElement("iframe");
-    iframe.name = frameName;
-    iframe.title = "Αποστολή απάντησης";
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
+  try {
+    const body = new URLSearchParams();
+    body.set("profile", profileKey);
+    body.set("answers", JSON.stringify(answers));
+    body.set("resultType", result.type);
 
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = ONLINE_API_URL;
-    form.target = frameName;
-    form.style.display = "none";
-
-    const fields = {
-      profile: profileKey,
-      answers: JSON.stringify(answers),
-      resultType: result.type
-    };
-
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
+    // Το Apps Script δέχεται application/x-www-form-urlencoded στο doPost.
+    // Με no-cors δεν περιμένουμε απάντηση από τον server, ώστε η σελίδα
+    // να μην παγώνει όσο το Apps Script ολοκληρώνει την καταχώριση.
+    await fetch(ONLINE_API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      body
     });
 
-    document.body.appendChild(form);
-    form.submit();
-
-    // Το Apps Script δεν χρειάζεται να επιστρέψει δεδομένα στον browser.
-    // Η υποβολή θεωρείται επιτυχής αφού στάλθηκε η φόρμα.
-    setTimeout(() => {
-      form.remove();
-      iframe.remove();
-      resolve({ saved: true });
-    }, 900);
-  });
+    return { saved: true, reason: "sent" };
+  } catch (error) {
+    console.error("Σφάλμα αποστολής στο Google Apps Script:", error);
+    return { saved: false, reason: "connection-error" };
+  }
 }
 
 function loadOnlineStatistics(profileKey = null) {
@@ -382,9 +451,13 @@ function loadOnlineStatistics(profileKey = null) {
     }
 
     const action = profileKey ? "profileStatistics" : "statistics";
-    const callbackName = `cctvStats_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const callbackName =
+      `cctvStats_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const script = document.createElement("script");
+    script.async = true;
+
     let finished = false;
+    let timeout;
 
     const cleanup = () => {
       clearTimeout(timeout);
@@ -396,25 +469,24 @@ function loadOnlineStatistics(profileKey = null) {
       if (finished) return;
       finished = true;
       cleanup();
-      error ? reject(error) : resolve(data);
+      if (error) reject(error);
+      else resolve(data);
     };
 
     window[callbackName] = (data) => {
       if (!data || typeof data !== "object") {
-        finish(new Error("Μη έγκυρα δεδομένα από το Google Apps Script."));
+        finish(new Error("Μη έγκυρα στατιστικά από το Google Apps Script."));
         return;
       }
-
       if (profileKey) {
         if (typeof data.total !== "number" || !Array.isArray(data.questions)) {
-          finish(new Error("Μη έγκυρα στατιστικά προφίλ."));
+          finish(new Error("Το Google Apps Script επέστρεψε μη έγκυρα στατιστικά προφίλ."));
           return;
         }
       } else if (typeof data.total !== "number" || !data.profiles) {
-        finish(new Error("Μη έγκυρα συνολικά στατιστικά."));
+        finish(new Error("Το Google Apps Script επέστρεψε μη έγκυρα συνολικά στατιστικά."));
         return;
       }
-
       finish(null, data);
     };
 
@@ -422,20 +494,160 @@ function loadOnlineStatistics(profileKey = null) {
       finish(new Error("Δεν ήταν δυνατή η φόρτωση των στατιστικών."));
     };
 
-    const timeout = setTimeout(() => {
-      finish(new Error("Η φόρτωση των στατιστικών άργησε περισσότερο από το αναμενόμενο."));
+    timeout = setTimeout(() => {
+      finish(new Error("Timeout κατά την ανάκτηση των στατιστικών."));
     }, 8000);
 
     const separator = ONLINE_API_URL.includes("?") ? "&" : "?";
-    let url = `${ONLINE_API_URL}${separator}action=${action}&callback=${encodeURIComponent(callbackName)}&t=${Date.now()}`;
+    let url =
+      `${ONLINE_API_URL}${separator}` +
+      `action=${action}` +
+      `&callback=${encodeURIComponent(callbackName)}` +
+      `&t=${Date.now()}`;
+
     if (profileKey) {
       url += `&profile=${encodeURIComponent(profileKey)}`;
     }
 
-    script.async = true;
     script.src = url;
     document.head.appendChild(script);
   });
+}
+
+function getMajorityIntro(profileKey) {
+  const intros = {
+    beginner:
+      "Ας δούμε τι απάντησε η πλειοψηφία ατόμων χωρίς προηγούμενη γνώση στα συστήματα ασφαλείας με εσάς.",
+    intermediate:
+      "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη εμπειρία στα συστήματα ασφαλείας με εσάς.",
+    advanced:
+      "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη πρακτική ή επαγγελματική εμπειρία στα συστήματα ασφαλείας με εσάς."
+  };
+  return intros[profileKey] || "Ας δούμε τι απάντησε η πλειοψηφία ατόμων με αντίστοιχη εμπειρία στα συστήματα ασφαλείας με εσάς.";
+}
+
+async function loadMajorityComparison(profileKey) {
+  const box = document.getElementById("aggregate-conclusion");
+  const distributionBox = document.getElementById("participant-distribution");
+  if (!box) return;
+
+  // Εμφανίζουμε αμέσως το πλαίσιο, ώστε η σελίδα να μη μοιάζει κολλημένη.
+  box.innerHTML = `
+    <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
+    <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
+    <p>Φόρτωση των συγκεντρωτικών απαντήσεων…</p>
+  `;
+
+  try {
+    // Οι δύο ανεξάρτητες κλήσεις γίνονται παράλληλα.
+    const [profileStats, overallStats] = await Promise.all([
+      loadOnlineStatistics(profileKey),
+      loadOnlineStatistics()
+    ]);
+
+    // Κατανομή συμμετεχόντων ακριβώς πάνω από τα κείμενα.
+    if (distributionBox) {
+      const labels = {
+        beginner: "Άτομα χωρίς προηγούμενη γνώση",
+        intermediate: "Άτομα με βασικές γνώσεις",
+        advanced: "Άτομα με πρακτική ή επαγγελματική εμπειρία"
+      };
+      const total = Number(overallStats.total) || 0;
+      const entries = Object.entries(overallStats.profiles || {})
+        .filter(([key]) => Object.prototype.hasOwnProperty.call(labels, key))
+        .map(([key, count]) => [key, Number(count) || 0]);
+
+      distributionBox.innerHTML = `
+        <h3>Κατανομή συμμετεχόντων</h3>
+        ${entries.length ? entries.map(([key, count]) => {
+          const percentage = total ? Math.round((count / total) * 100) : 0;
+          return `
+            <div class="participant-distribution-row">
+              <p><strong>${escapeHtml(labels[key])}</strong>: ${count} άτομα (${percentage}%)</p>
+              <div class="stat-bar"><span style="width:${percentage}%"></span></div>
+            </div>
+          `;
+        }).join("") : "<p>Δεν υπάρχουν ακόμη καταγεγραμμένες συμμετοχές.</p>"}
+      `;
+    }
+
+    const stats = profileStats;
+    const profileQuestions = questionnaires[profileKey]?.questions || [];
+    const profileTexts = majorityTexts[profileKey] || [];
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.answers) || "{}");
+    const userAnswers = Array.isArray(saved.answers) ? saved.answers : [];
+
+    if (!stats.total || !stats.questions?.length) {
+      box.innerHTML = `
+        <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
+        <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
+        <p>Δεν υπάρχουν ακόμη αρκετές καταγεγραμμένες απαντήσεις στην ίδια κατηγορία για να υπολογιστεί πλειοψηφία.</p>
+      `;
+      return;
+    }
+
+    const cards = stats.questions.map((questionStats, questionIndex) => {
+      const counts = (questionStats.counts || [0, 0, 0]).map(Number);
+      const max = Math.max(...counts);
+      let winners = counts
+        .map((count, index) => ({ count, index }))
+        .filter(item => item.count === max && max > 0);
+
+      // Σε ισοπαλία εμφανίζεται μόνο η απάντηση που επέλεξε ο χρήστης,
+      // εφόσον αυτή ανήκει στις ισόπαλες απαντήσεις.
+      if (winners.length > 1) {
+        const userAnswer = Number(userAnswers[questionIndex]);
+        const userWinner = winners.find(item => item.index === userAnswer - 1);
+        winners = userWinner ? [userWinner] : [];
+      }
+
+      const question = profileQuestions[questionIndex];
+      const textsForQuestion = profileTexts[questionIndex] || [];
+      if (!question || !winners.length) {
+        return `
+          <article class="question-card majority-question-card">
+            <p class="question-step">Ερώτηση ${questionIndex + 1}</p>
+            <h4>${escapeHtml(question?.title || `Ερώτηση ${questionIndex + 1}`)}</h4>
+            <p>Υπάρχει ισοπαλία στις πρώτες απαντήσεις και η επιλογή σου δεν ανήκει στις ισόπαλες απαντήσεις.</p>
+          </article>
+        `;
+      }
+
+      const winnerBlocks = winners.map(({ count, index }) => {
+        const percentage = Math.round((count / stats.total) * 100);
+        const answerName = question.options[index] || `Απάντηση ${index + 1}`;
+        const text = textsForQuestion[index] || "Δεν υπάρχει διαθέσιμο κείμενο για αυτή την απάντηση.";
+        return `
+          <div class="majority-answer">
+            <p><strong>Η απάντηση της πλειοψηφίας:</strong> «${escapeHtml(answerName)}»</p>
+            <p>${escapeHtml(text).replaceAll("\n", "<br>")}</p>
+            <p class="majority-percentage"><strong>${percentage}%</strong> (${count} από ${stats.total} άτομα)</p>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <article class="question-card majority-question-card">
+          <p class="question-step">Ερώτηση ${questionIndex + 1}</p>
+          <h4>${escapeHtml(question.title)}</h4>
+          ${winnerBlocks}
+        </article>
+      `;
+    }).join("");
+
+    box.innerHTML = `
+      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
+      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
+      <div class="majority-results">${cards}</div>
+    `;
+  } catch (error) {
+    console.error("Σφάλμα σύγκρισης με την ομάδα:", error);
+    box.innerHTML = `
+      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
+      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
+      <p>Δεν ήταν δυνατή αυτή τη στιγμή η φόρτωση των συγκεντρωτικών απαντήσεων. Η απάντησή σου έχει παραμείνει διαθέσιμη στη σελίδα.</p>
+    `;
+  }
 }
 
 function evaluateAnswers(profileKey, answers) {
@@ -501,101 +713,54 @@ async function renderQuestionResult(result) {
   const resultTitle = document.getElementById("result-title");
   const resultText = document.getElementById("result-text");
 
-  if (!resultSection || !resultTitle || !resultText) return;
+  if (!resultSection || !resultTitle || !resultText) {
+    return;
+  }
 
   resultTitle.textContent = result.title;
   resultText.textContent = result.text;
   resultSection.hidden = false;
   resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  // Δεν μπλοκάρουμε την εμφάνιση του προσωπικού αποτελέσματος.
-  // Τα συγκεντρωτικά στοιχεία φορτώνονται αμέσως μετά, στο ίδιο τμήμα.
   const profileKey = getSelectedProfileKey();
-  loadAggregateConclusion(profileKey);
+  // Το προσωπικό αποτέλεσμα εμφανίζεται αμέσως. Τα online στατιστικά
+  // φορτώνονται στο παρασκήνιο ώστε η σελίδα να μην μπλοκάρει.
+  void loadMajorityComparison(profileKey);
 }
 
-async function loadAggregateConclusion(profileKey) {
+async function loadAggregateConclusion() {
   const box = document.getElementById("aggregate-conclusion");
   if (!box) return;
 
-  const saved = localStorage.getItem(STORAGE_KEYS.answers);
-  let userAnswers = [];
   try {
-    userAnswers = saved ? JSON.parse(saved).answers || [] : [];
-  } catch (_) {
-    userAnswers = [];
-  }
+    const stats = await loadOnlineStatistics();
 
-  box.innerHTML = `
-    <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-    <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-    <p class="majority-loading">Φόρτωση των απαντήσεων της ομάδας…</p>
-  `;
+    const labels = {
+      beginner: "Άτομα χωρίς προηγούμενη γνώση",
+      intermediate: "Άτομα με βασικές γνώσεις",
+      advanced: "Άτομα με πρακτική ή επαγγελματική εμπειρία"
+    };
 
-  try {
-    const stats = await loadOnlineStatistics(profileKey);
-    const profileQuestions = questionnaires[profileKey]?.questions || [];
-    const profileTexts = majorityTexts[profileKey] || [];
+    const entries = Object.entries(stats.profiles).sort((a, b) => b[1] - a[1]);
+    const [winnerKey, winnerCount] = entries[0] || [];
 
-    if (!stats.total || !stats.questions.length) {
-      box.innerHTML += `<p>Δεν υπάρχουν ακόμη αρκετές καταγεγραμμένες απαντήσεις στην ίδια κατηγορία για να υπολογιστεί πλειοψηφία.</p>`;
+    if (!winnerKey || !stats.total) {
+      box.innerHTML = "<p>Δεν υπάρχουν ακόμη αρκετές απαντήσεις για συνολικό συμπέρασμα.</p>";
       return;
     }
 
-    const cards = stats.questions.map((questionStats, questionIndex) => {
-      const counts = (questionStats.counts || [0, 0, 0]).map(Number);
-      const max = Math.max(...counts);
-      let winners = counts
-        .map((count, index) => ({ count, index }))
-        .filter(item => item.count === max && max > 0);
-
-      // Σε ισοπαλία κρατάμε μόνο την απάντηση που επέλεξε ο συγκεκριμένος χρήστης.
-      if (winners.length > 1) {
-        const userAnswer = Number(userAnswers[questionIndex]);
-        if (userAnswer >= 1 && userAnswer <= 3) {
-          const selectedWinner = winners.find(item => item.index === userAnswer - 1);
-          if (selectedWinner) winners = [selectedWinner];
-        }
-      }
-
-      const question = profileQuestions[questionIndex];
-      const textsForQuestion = profileTexts[questionIndex] || [];
-      if (!question || !winners.length) return "";
-
-      const winnerBlocks = winners.map(({ count, index }) => {
-        const percentage = Math.round((count / stats.total) * 100);
-        const answerName = question.options[index] || `Απάντηση ${index + 1}`;
-        const text = textsForQuestion[index] || "Δεν υπάρχει διαθέσιμο κείμενο για αυτή την απάντηση.";
-        return `
-          <div class="majority-answer">
-            <p><strong>Η απάντηση της πλειοψηφίας:</strong> «${escapeHtml(answerName)}»</p>
-            <p>${escapeHtml(text)}</p>
-            <p class="majority-percentage"><strong>${percentage}%</strong> (${count} από ${stats.total} άτομα)</p>
-          </div>
-        `;
-      }).join("");
-
-      return `
-        <article class="question-card majority-question-card">
-          <p class="question-step">Ερώτηση ${questionIndex + 1}</p>
-          <h4>${escapeHtml(question.title)}</h4>
-          ${winnerBlocks}
-        </article>
-      `;
-    }).join("");
-
+    const percentage = Math.round((winnerCount / stats.total) * 100);
     box.innerHTML = `
-      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-      <div class="majority-results">${cards}</div>
+      <h3>Συνολικό συμπέρασμα μέχρι τώρα</h3>
+      <p>
+        Από τις <strong>${stats.total}</strong> καταγεγραμμένες συμμετοχές,
+        η μεγαλύτερη ομάδα είναι η
+        <strong>${labels[winnerKey]}</strong>, με
+        <strong>${winnerCount}</strong> άτομα (${percentage}%).
+      </p>
     `;
   } catch (error) {
-    console.error("Σφάλμα σύγκρισης με την ομάδα:", error);
-    box.innerHTML = `
-      <h3>Τι απάντησε η πλειοψηφία της ομάδας σου;</h3>
-      <p>${escapeHtml(getMajorityIntro(profileKey))}</p>
-      <p>Η απάντησή σου καταγράφηκε. Τα συγκεντρωτικά στοιχεία της ομάδας δεν ήταν διαθέσιμα αυτή τη στιγμή.</p>
-    `;
+    console.error(error);
   }
 }
 
@@ -644,57 +809,67 @@ function renderQuestionsPage() {
     .map((question, index) => createQuestionMarkup(question, index))
     .join("");
 
+  let submissionLocked = false;
+
   questionsForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const isValid = validateAnswers(selectedProfile.questions.length);
+    if (submissionLocked) {
+      return;
+    }
 
+    const isValid = validateAnswers(selectedProfile.questions.length);
     if (!isValid) {
       alert("Παρακαλώ απάντησε σε όλες τις ερωτήσεις πριν συνεχίσεις.");
       return;
     }
 
     const answers = collectAnswers(selectedProfile.questions.length);
+    // Κλείδωμα πριν από οποιαδήποτε δικτυακή κλήση.
+    // Το κλείδωμα αφορά τη συγκεκριμένη συμπλήρωση της φόρμας και
+    // εμποδίζει διπλό click/διπλή υποβολή χωρίς να εμποδίζει μια
+    // μελλοντική νέα συμμετοχή.
+    submissionLocked = true;
+
+    const submitButton = document.getElementById("submit-button");
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute("aria-disabled", "true");
+      submitButton.textContent = "Υποβολή…";
+    }
+
     saveAnswers(selectedProfileKey, answers);
 
     const result = evaluateAnswers(selectedProfileKey, answers);
     saveResult(result);
 
-    const submitButton = document.getElementById("submit-button");
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.setAttribute("aria-busy", "true");
-    }
-
     const submitStatus = document.getElementById("submit-status");
     if (submitStatus) {
-      submitStatus.textContent = "Αποθήκευση απάντησης…";
+      submitStatus.textContent = "Η απάντησή σου υποβάλλεται…";
       submitStatus.className = "submit-status";
     }
 
-    const serverResult = await submitViaGoogleSheet(
-      selectedProfileKey,
-      answers,
-      result
-    );
+    // Δεν περιμένουμε το Google Apps Script για να εμφανίσουμε τη συνέχεια.
+    // Η αποστολή εκτελείται παράλληλα.
+    const savePromise = submitViaGoogleSheet(selectedProfileKey, answers, result);
 
+    renderQuestionResult(result);
+
+    const serverResult = await savePromise;
     if (submitStatus) {
       if (serverResult.saved) {
         submitStatus.textContent = "Η απάντησή σου καταγράφηκε επιτυχώς.";
         submitStatus.className = "submit-status success";
       } else {
-        submitStatus.textContent =
-          "Το προσωπικό σου αποτέλεσμα εμφανίζεται κανονικά, αλλά η online συλλογή δεν έχει ρυθμιστεί ακόμη.";
+        const detail = serverResult.reason === "not-configured"
+          ? "Δεν έχει ρυθμιστεί το online API."
+          : serverResult.reason === "connection-error"
+            ? "Δεν ήταν δυνατή η επικοινωνία με το Google Apps Script."
+            : serverResult.reason || "Άγνωστο σφάλμα.";
+        submitStatus.textContent = `Σφάλμα κατά την αποθήκευση: ${detail}`;
         submitStatus.className = "submit-status warning";
       }
     }
-
-    if (submitButton) {
-      submitButton.disabled = false;
-      submitButton.removeAttribute("aria-busy");
-    }
-
-    renderQuestionResult(result);
   });
 }
 
