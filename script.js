@@ -463,123 +463,95 @@ function submitViaGoogleSheet(profileKey, answers, result) {
       return;
     }
 
-    const callbackId =
-      "cctv_submission_" +
-      Date.now() +
-      "_" +
-      Math.random().toString(36).slice(2);
+    const callbackName =
+      `cctvSubmit_${Date.now()}_${Math.random().toString(36).slice(2)}`;
 
-    /*
-     * Δεν χρησιμοποιούμε fetch.
-     *
-     * Δημιουργούμε κρυφό iframe και προσωρινό form.
-     * Το form υποβάλλεται απευθείας στο Google Apps Script Web App,
-     * αποφεύγοντας τα προβλήματα CORS / Failed to fetch.
-     */
+    const script = document.createElement("script");
+    script.async = true;
 
-    const iframe = document.createElement("iframe");
-    iframe.name = callbackId;
-    iframe.id = callbackId;
-    iframe.style.display = "none";
-
-    document.body.appendChild(iframe);
-
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = ONLINE_API_URL;
-    form.target = callbackId;
-    form.style.display = "none";
-
-    const fields = {
-      profile: profileKey,
-      answers: JSON.stringify(answers),
-      resultType: result.type
-    };
-
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-
-    let completed = false;
+    let finished = false;
+    let timeout;
 
     const cleanup = () => {
-      if (form.parentNode) {
-        form.parentNode.removeChild(form);
+      clearTimeout(timeout);
+
+      try {
+        delete window[callbackName];
+      } catch (error) {
+        window[callbackName] = undefined;
       }
 
-      if (iframe.parentNode) {
-        iframe.parentNode.removeChild(iframe);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
     };
 
-    /*
-     * Το iframe load σημαίνει ότι το αίτημα έφτασε στο Web App.
-     * Το Apps Script μπορεί να ολοκληρώσει την εγγραφή στο Sheet
-     * πριν ή κατά τη διάρκεια της φόρτωσης της απάντησης.
-     */
-    iframe.addEventListener("load", () => {
-      if (completed) return;
+    const finish = (resultData) => {
+      if (finished) return;
 
-      completed = true;
-
-      setTimeout(() => {
-        cleanup();
-      }, 300);
-
-      resolve({
-        saved: true,
-        reason: "sent"
-      });
-    });
-
-    /*
-     * Εφεδρικός μηχανισμός.
-     *
-     * Αν το Apps Script δεν προκαλέσει load event στο iframe,
-     * θεωρούμε ότι το request στάλθηκε αφού το submit εκτελέστηκε.
-     *
-     * Δεν εμφανίζουμε ψευδές Failed to fetch.
-     */
-    setTimeout(() => {
-      if (completed) return;
-
-      completed = true;
+      finished = true;
       cleanup();
+      resolve(resultData);
+    };
 
-      resolve({
-        saved: true,
-        reason: "sent-timeout-confirmed"
-      });
-    }, 5000);
+    window[callbackName] = (data) => {
+      if (!data || typeof data !== "object") {
+        finish({
+          saved: false,
+          reason: "invalid-response"
+        });
+        return;
+      }
 
-    try {
-      form.submit();
-    } catch (error) {
-      console.error(
-        "Σφάλμα κατά την αποστολή στο Google Apps Script:",
-        error
-      );
+      if (data.success === true) {
+        finish({
+          saved: true,
+          reason: "saved",
+          message: data.message || "Η απάντηση καταγράφηκε επιτυχώς."
+        });
+      } else {
+        finish({
+          saved: false,
+          reason: data.message || "server-error",
+          error: data.error || ""
+        });
+      }
+    };
 
-      if (completed) return;
-
-      completed = true;
-      cleanup();
-
-      resolve({
+    script.onerror = () => {
+      finish({
         saved: false,
-        reason: "submit-error",
-        error: String(error)
+        reason: "connection-error"
       });
-    }
+    };
+
+    /*
+     * Το timeout είναι αρκετά μεγάλο ώστε να δοθεί χρόνος
+     * στο Google Apps Script να ολοκληρώσει την καταχώριση.
+     */
+    timeout = setTimeout(() => {
+      finish({
+        saved: false,
+        reason: "timeout"
+      });
+    }, 15000);
+
+    const separator = ONLINE_API_URL.includes("?") ? "&" : "?";
+
+    const url =
+      `${ONLINE_API_URL}${separator}` +
+      `action=submit` +
+      `&callback=${encodeURIComponent(callbackName)}` +
+      `&profile=${encodeURIComponent(profileKey)}` +
+      `&answers=${encodeURIComponent(JSON.stringify(answers))}` +
+      `&resultType=${encodeURIComponent(result.type)}` +
+      `&t=${Date.now()}`;
+
+    script.src = url;
+
+    document.head.appendChild(script);
   });
 }
-
 
 // ============================================================
 // ONLINE STATISTICS / JSONP
